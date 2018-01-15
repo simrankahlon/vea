@@ -29,7 +29,7 @@
                     <select id="filters" name="filters" class="form-control" size="1">
                         <option value="">Please select</option>
                         @foreach(App\Http\AcatUtilities\Filters::all() as $value => $code)
-                            <option value="{{$code}}" @if (old('filters') == $code) selected="selected" @endif>{{$value}}</option>
+                            <option value="{{$code}}" @if ($search == $code) selected="selected" @endif>{{$value}}</option>
                         @endforeach
                     </select>
                     <span style="color:red">{{ $errors->first('filters') }}</span>

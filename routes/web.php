@@ -110,14 +110,14 @@ Route::get('admission/{admission}/{installment}/emailreceipt','AdmissionControll
 
 //TO-DO LIST
 
-Route::get('todolist','TodoListController@index')->middleware('revalidate');
-Route::get('todolist/create','TodoListController@create')->middleware('revalidate');
-Route::post('todolist/create','TodoListController@store')->middleware('revalidate');
-Route::get('todolist/{todolist}/edit','TodoListController@edit')->middleware('revalidate'); 
-Route::patch('todolist/{todolist}/edit','TodoListController@update')->middleware('revalidate');
-Route::get('todolist/{todolist}/delete','TodoListController@delete')->middleware('revalidate'); 
-Route::get('todolist/filters','TodoListController@filters')->middleware('revalidate'); 
-Route::get('todolist/search','TodoListController@search')->middleware('revalidate');
+Route::get('todolist','TodolistController@index')->middleware('revalidate');
+Route::get('todolist/create','TodolistController@create')->middleware('revalidate');
+Route::post('todolist/create','TodolistController@store')->middleware('revalidate');
+Route::get('todolist/{todolist}/edit','TodolistController@edit')->middleware('revalidate'); 
+Route::patch('todolist/{todolist}/edit','TodolistController@update')->middleware('revalidate');
+Route::get('todolist/{todolist}/delete','TodolistController@delete')->middleware('revalidate'); 
+Route::get('todolist/filters','TodolistController@filters')->middleware('revalidate'); 
+Route::get('todolist/search','TodolistController@search')->middleware('revalidate');
 
 //EXPORT TEMPLATE
 Route::get('export/create','ExportController@create')->middleware('revalidate');

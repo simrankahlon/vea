@@ -146,7 +146,7 @@ class AdmissionController extends Controller
             'fatherno' => 'nullable|digits:10',
             'motherno' => 'nullable|digits:10',
             'whatsapptext' =>'required',
-            'landline' =>'nullable|digits:10',
+            'landline' =>'nullable|digits:8',
             'email'    =>'nullable|email',
             'standard'=>'required',
             'admbatch'=>'required',
@@ -243,7 +243,7 @@ class AdmissionController extends Controller
             'fatherno' => 'nullable|digits:10',
             'motherno' => 'nullable|digits:10',
             'whatsapptext' =>'required',
-            'landline' =>'nullable|digits:10',
+            'landline' =>'nullable|digits:8',
             'email'    =>'nullable|email',
             'standard'=>'required',
             'admbatch'=>'required',
@@ -374,7 +374,7 @@ class AdmissionController extends Controller
         $branch=Session::get('branch');
         $batch_id=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('batchname','=',$admission->admissionbatch)->value('id');
         $batch=Batch::find($batch_id);
-        $fee=Fee::where('fromyear',$fromyear)->where('toyear',$toyear)->where('standard','=',$admission->standard)->get();
+        $fee=Fee::where('fromyear',$fromyear)->where('toyear',$toyear)->where('standard','=',$admission->standard)->where('id',$admission->fee_id)->get();
         return view('admission.feeadd',compact('admission','installment','fee','batch'));
     }
 

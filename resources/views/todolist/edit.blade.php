@@ -6,7 +6,7 @@
             <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/todolist') }}">To-Do List</a>
             </li>
-            <li class="breadcrumb-item"><a href="#">{{ $todolist->name }}</a>
+            <li class="breadcrumb-item active">{{ $todolist->name }}
             </li>
             <li class="breadcrumb-item active">Edit</li>
 </ol>
@@ -23,7 +23,8 @@
                             <div class="card-block">
                                     <div class="form-group">
                                         <label for="name">Name</label> <span style="color:red"> *</span>
-                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Name" value="{{ $todolist->name }}" required="">
+                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Name" value="{{ $todolist->name }}" pattern="[a-zA-Z\s]+"
+                                        required="">
                                         <span style="color:red">{{ $errors->first('name') }}</span>
                                     </div>
                                     <div class="form-group row">

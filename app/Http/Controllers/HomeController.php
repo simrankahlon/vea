@@ -10,6 +10,7 @@ use App\Admission;
 use App\Todolist;
 use App\Parentsmeet;
 use App\TestScheduler;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     
@@ -81,13 +82,13 @@ class HomeController extends Controller
         $fromyear=Session::get('fromyear');
         $toyear=Session::get('toyear');
         $branch=Session::get('branch');
-        
+        $date = date('Y-m-d');
         
         $enquiry = Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->orderBy('updated_at', 'desc')->limit(5)->get();
         
         $tasks = Todolist::limit(5)->get();
         $pmeet = Parentsmeet::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->orderBy('updated_at', 'desc')->limit(5)->get(); 
-        $testscheduler=TestScheduler::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->orderBy('updated_at', 'desc')->limit(5)->get();
+        $testscheduler=TestScheduler::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('test_date','>=',$date)->orderBy('updated_at', 'desc')->limit(5)->get();
         return view('home',compact('enquiry','usercount','orientation','admission','tasks','pmeet','testscheduler'));
 
 

@@ -39,7 +39,7 @@ $toyear=Session::get('toyear');
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-1">
-                                            <label for="Month">Month </label><span style="color:red"> *</span>
+                                            <label for="Month">Month : </label><span style="color:red"> *</span>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="month" id="month" name="month" required="" 

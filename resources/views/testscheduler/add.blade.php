@@ -49,7 +49,7 @@ $toyear=Session::get('toyear');
                                     <div class="form-group row">
                                         <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="ann_date">Announcement Date</label><span style="color:red"> *</span>
+                                            <label for="ann_date">Announcement Date</label>
                                             <input name ="ann_date" type="date" class="form-control" id="ann_date"  placeholder="Announcement Date" value="{{ old('ann_date') }}">
                                             <span style="color:red">{{ $errors->first('ann_date') }}</span>
                                         </div>
@@ -58,7 +58,7 @@ $toyear=Session::get('toyear');
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <label for="standard">Standard</label><span style="color:red"> *</span>
+                                    <label for="standard">Standard</label>
                                     <select id="standard" name="standard" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Standard::all() as $value => $code)
@@ -68,7 +68,7 @@ $toyear=Session::get('toyear');
                                     <span style="color:red">{{ $errors->first('standard') }}</span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="batch">Batch</label><span style="color:red"> * </span>
+                                        <label for="batch">Batch</label>
                                         <select id="batch" name="batch" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         </select>
@@ -77,7 +77,7 @@ $toyear=Session::get('toyear');
                                     <div class="form-group row">
                                         <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="test_date">Test Date</label><span style="color:red"> *</span>
+                                            <label for="test_date">Test Date</label>
                                             <input name ="test_date" type="date" class="form-control" id="test_date"  placeholder="Test Date" value="{{ old('test_date') }}">
                                             <span style="color:red">{{ $errors->first('test_date') }}</span>
                                         </div>
@@ -86,17 +86,17 @@ $toyear=Session::get('toyear');
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="portion">Portion (Set)</label> <span style="color:red"> *</span>
+                                        <label for="portion">Portion (Set)</label> 
                                         <input name ="portion" type="text" class="form-control" id="portion" placeholder="Portion (Set)" value="{{ old('portion') }}">
                                         <span style="color:red">{{ $errors->first('portion') }}</span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="marks">Marks</label> <span style="color:red"> *</span>
+                                        <label for="marks">Marks</label> 
                                         <input name ="marks" type="text" class="form-control" id="marks" placeholder="Marks" value="{{ old('marks') }}" pattern="[0-9]{1,3}">
                                         <span style="color:red">{{ $errors->first('marks') }}</span>
                                     </div>
                                     <div class="form-group">
-                                    <label for="qp_ready">Question paper ready</label><span style="color:red"> *</span>
+                                    <label for="qp_ready">Question paper ready</label>
                                     <select id="qp_ready" name="qp_ready" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
@@ -106,7 +106,7 @@ $toyear=Session::get('toyear');
                                     <span style="color:red">{{ $errors->first('qp_ready') }}</span>
                                     </div>
                                     <div class="form-group">
-                                    <label for="xerox">Xerox ready</label><span style="color:red"> *</span>
+                                    <label for="xerox">Xerox ready</label>
                                     <select id="xerox" name="xerox" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
@@ -116,14 +116,14 @@ $toyear=Session::get('toyear');
                                     <span style="color:red">{{ $errors->first('xerox') }}</span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="corr_done">Correction done by</label> <span style="color:red"> *</span>
-                                        <input name ="corr_done" type="text" class="form-control" id="corr_done" placeholder="Correction done by" value="{{ old('corr_done') }}">
+                                        <label for="corr_done">Correction done by</label>
+                                        <input name ="corr_done" type="text" class="form-control" id="corr_done" placeholder="Correction done by" value="{{ old('corr_done') }}" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('corr_done') }}</span>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="dis_date">Distribution Date</label><span style="color:red"> *</span>
+                                            <label for="dis_date">Distribution Date</label>
                                             <input name ="dis_date" type="date" class="form-control" id="dis_date"  placeholder="Distribution Date" value="{{ old('dis_date') }}">
                                             <span style="color:red">{{ $errors->first('dis_date') }}</span>
                                         </div>
@@ -132,7 +132,7 @@ $toyear=Session::get('toyear');
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <label for="an_uploaded">Answer key uploaded</label><span style="color:red"> *</span>
+                                    <label for="an_uploaded">Answer key uploaded</label>
                                     <select id="an_uploaded" name="an_uploaded" class="form-control" size="1" >
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
@@ -142,7 +142,7 @@ $toyear=Session::get('toyear');
                                     <span style="color:red">{{ $errors->first('an_uploaded') }}</span>
                                     </div>
                                     <div class="form-group">
-                                    <label for="msg_sent">Msg sent</label><span style="color:red"> *</span>
+                                    <label for="msg_sent">Msg sent</label>
                                     <select id="msg_sent" name="msg_sent" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)

@@ -96,12 +96,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Students Name</label> <span style="color:red"> *</span>
-                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Student name" value="{{ $parentsmeet->studentname }}" required="">
+                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Student name" value="{{ $parentsmeet->studentname }}" required="" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('name') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="to_meet">To Meet</label> <span style="color:red"> *</span>
-                                        <input name ="to_meet" type="text" class="form-control" id="to_meet" placeholder="To Meet" value="{{ $parentsmeet->tomeet }}" required="">
+                                        <input name ="to_meet" type="text" class="form-control" id="to_meet" placeholder="To Meet" value="{{ $parentsmeet->tomeet }}" required=""
+                                        pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('to_meet') }}</span>
                                     </div>
                                     <div class="form-group row">
@@ -144,9 +145,11 @@ $("#standard" ).change(function()
     var standard = $("#standard").val();
     var branch = $("#branch").val();
     var url = $('#url').val();
+    var fromyear = $("#from_year").val();
+    var toyear = $("#to_year").val();
     if (standard === 'VIII') {
 
-        $.get(url + '/ajax/admission/'+standard+'/'+branch, function (data) {
+        $.get(url + '/ajax/admission/'+standard+'/'+branch+'/'+fromyear+'/'+toyear, function (data) {
                     //success data
                     console.log(data);
                     $('#batch').empty();
@@ -159,7 +162,7 @@ $("#standard" ).change(function()
 
     else if(standard==='IX') {
 
-        $.get(url + '/ajax/admission/'+standard+'/'+branch, function (data) {
+        $.get(url + '/ajax/admission/'+standard+'/'+branch+'/'+fromyear+'/'+toyear, function (data) {
                     //success data
                     console.log(data);
                     $('#batch').empty();
@@ -173,7 +176,7 @@ $("#standard" ).change(function()
         }
     else if(standard==='X'){
 
-        $.get(url + '/ajax/admission/'+standard+'/'+branch, function (data) {
+        $.get(url + '/ajax/admission/'+standard+'/'+branch+'/'+fromyear+'/'+toyear, function (data) {
                     //success data
                     console.log(data);
                     $('#batch').empty();
@@ -185,7 +188,21 @@ $("#standard" ).change(function()
     }
     
   });
-
+$( "#editparentsmeet" ).submit(function() 
+{
+    var from_year=$('#from_year').val();
+    var to_year=$('#to_year').val();
+    var my_val=parseInt(from_year)+1;
+    if(my_val !=to_year)
+    {
+        alert('Please enter correct academic year...')
+        return false;
+    }
+});
 
 </script>
 @endsection
+
+
+
+

@@ -3,10 +3,10 @@
 <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
             
-            <li class="breadcrumb-item active">Enquiry</li>
+            <li class="breadcrumb-item active">Test Schedule</li>
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <a class="btn btn-secondary" href="{{ url('/testscheduler/create') }}"><i class="icon-plus"></i> &nbsp;Create Test Scheduler </a>
+                    <a class="btn btn-secondary" href="{{ url('/testscheduler/create') }}"><i class="icon-plus"></i> &nbsp;Create Test Schedule </a>
                 </div>
             </li>
         </ol>
@@ -29,7 +29,7 @@
                     <select id="filters" name="filters" class="form-control" size="1">
                         <option value="">Please select</option>
                         @foreach(App\Http\AcatUtilities\Filters::all() as $value => $code)
-                            <option value="{{$code}}" @if (old('filters') == $code) selected="selected" @endif>{{$value}}</option>
+                            <option value="{{$code}}" @if ($search == $code) selected="selected" @endif>{{$value}}</option>
                         @endforeach
                     </select>
                     <span style="color:red">{{ $errors->first('filters') }}</span>

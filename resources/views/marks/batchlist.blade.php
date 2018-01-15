@@ -75,7 +75,7 @@ $toyear=Session::get('toyear');
                             <td> 
                                 <div> 
                                     <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/marks/'.$nine->id.'/'.$standard1.'/newmarks') }}'">Add</button>
-                                    <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='{{ url('/marks/'.$nine->id.'/'.$standard1.'/listmarks') }}'">List</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="window.location.href='{{ url('/marks/'.$nine->id.'/'.$standard1.'/listmarks') }}'">List</button>
                                     <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='{{ url('/marks/'.$nine->id.'/'.$standard1.'/summaryreport') }}'">Summary Report</button>
                                 </div>
                             </td>
@@ -112,7 +112,7 @@ $toyear=Session::get('toyear');
                             <td> 
                                 <div> 
                                     <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/marks/'.$ten->id.'/'.$standard2.'/newmarks') }}'">Add</button>
-                                    <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='{{ url('/marks/'.$ten->id.'/'.$standard2.'/listmarks') }}'">List</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="window.location.href='{{ url('/marks/'.$ten->id.'/'.$standard2.'/listmarks') }}'">List</button>
                                     <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='{{ url('/marks/'.$ten->id.'/'.$standard2.'/summaryreport') }}'">Summary Report</button>
                                 </div>
                             </td>

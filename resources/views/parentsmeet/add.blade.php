@@ -21,7 +21,8 @@ $toyear=Session::get('toyear');
 @endphp
 <input type="hidden"  value="{{$url}}" id="url"/>
 <input type="hidden"  value="{{$branch}}" id="branch"/>
-
+<input type="hidden"  value="{{$fromyear}}" id="fromyear"/>
+<input type="hidden"  value="{{$toyear}}" id="toyear"/>
 <div class="card">
                             <form action="{{ url('/parentsmeet/create') }}" method="post" name="addparentsmeet" id="addparentsmeet">
                                 {{ csrf_field() }}
@@ -75,12 +76,12 @@ $toyear=Session::get('toyear');
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Students Name</label> <span style="color:red"> *</span>
-                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Student name" value="{{ old('name') }}" required="">
+                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Student name" value="{{ old('name') }}" required="" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('name') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="to_meet">To Meet</label> <span style="color:red"> *</span>
-                                        <input name ="to_meet" type="text" class="form-control" id="to_meet" placeholder="To Meet" value="{{ old('to_meet') }}" required="">
+                                        <input name ="to_meet" type="text" class="form-control" id="to_meet" placeholder="To Meet" value="{{ old('to_meet') }}" required="" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('to_meet') }}</span>
                                     </div>
                                     <div class="form-group row">
@@ -123,9 +124,12 @@ $("#standard" ).change(function()
     var standard = $("#standard").val();
     var branch = $("#branch").val();
     var url = $('#url').val();
+    var fromyear = $("#fromyear").val();
+    
+    var toyear = $("#toyear").val();
     if (standard === 'VIII') {
 
-        $.get(url + '/ajax/admission/'+standard+'/'+branch, function (data) {
+        $.get(url + '/ajax/admission/'+standard+'/'+branch+'/'+fromyear+'/'+toyear, function (data) {
                     //success data
                     console.log(data);
                     $('#batch').empty();
@@ -138,7 +142,7 @@ $("#standard" ).change(function()
 
     else if(standard==='IX') {
 
-        $.get(url + '/ajax/admission/'+standard+'/'+branch, function (data) {
+        $.get(url + '/ajax/admission/'+standard+'/'+branch+'/'+fromyear+'/'+toyear, function (data) {
                     //success data
                     console.log(data);
                     $('#batch').empty();
@@ -152,7 +156,7 @@ $("#standard" ).change(function()
         }
     else if(standard==='X'){
 
-        $.get(url + '/ajax/admission/'+standard+'/'+branch, function (data) {
+        $.get(url + '/ajax/admission/'+standard+'/'+branch+'/'+fromyear+'/'+toyear, function (data) {
                     //success data
                     console.log(data);
                     $('#batch').empty();

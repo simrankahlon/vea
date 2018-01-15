@@ -4,9 +4,9 @@
 @section('breadcrumb')
 <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/enquiry') }}">Fee</a>
+            <li class="breadcrumb-item"><a href="{{ url('/fee') }}">Fee</a>
             </li>
-             <li class="breadcrumb-item"><a href="#">{{ $fee->standard }}</a>
+             <li class="breadcrumb-item active">{{ $fee->standard }}
             </li>
             <li class="breadcrumb-item active">Edit</li>
 </ol>
@@ -25,11 +25,11 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-2">
-                                            <input type="number" name="from_year" min="2015" class="form-control" max="2030" step="1" id="from_year" value="{{$fee->fromyear}}">
+                                            <input type="number" name="from_year" min="2015" class="form-control" max="2030" step="1" id="from_year" value="{{$fee->fromyear}}" required="">
                                             <span style="color:red">{{ $errors->first('from_year') }}</span>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" name="to_year" id="to_year" min="2015" class="form-control" max="2030" step="1" value="{{$fee->toyear}}">
+                                            <input type="number" name="to_year" id="to_year" min="2015" class="form-control" max="2030" step="1" value="{{$fee->toyear}}" required="">
                                             <span style="color:red">{{ $errors->first('to_year') }}</span>
                                         </div>
                                         <div class="col-md-8">     
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="form-group">
                                     <label for="standard">Standard</label><span style="color:red"> *</span>
-                                    <select id="standard" name="standard" class="form-control" size="1">
+                                    <select id="standard" name="standard" class="form-control" size="1" required="">
                                        <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Standard::all() as $value => $code)
                                             @if($fee->standard == $code)
@@ -51,58 +51,58 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">C.GST %</label> <span style="color:red"> *</span>
-                                        <input name ="cgst" type="text" class="form-control" id="cgst" placeholder="C.GST %" value="{{ $fee->cgst }}">
+                                        <input name ="cgst" type="text" class="form-control" id="cgst" placeholder="C.GST %" value="{{ $fee->cgst }}" pattern="^\d*(\.\d{0,2})?$">
                                         <span style="color:red">{{ $errors->first('cgst') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">S.GST %</label> <span style="color:red"> *</span>
-                                        <input name ="sgst" type="text" class="form-control" id="sgst" placeholder="S.GST %" value="{{ $fee->sgst }}">
+                                        <input name ="sgst" type="text" class="form-control" id="sgst" placeholder="S.GST %" value="{{ $fee->sgst }}" pattern="^\d*(\.\d{0,2})?$">
                                         <span style="color:red">{{ $errors->first('sgst') }}</span>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="name">1st Installment (On Admission)</label> <span style="color:red"> *</span>
-                                        <input name ="1stinstallment" type="text" class="form-control" id="1stinstallment" placeholder="1st Installment (On Admission)" value=" {{$fee["1stinstallment"]}} "  onkeyup="sum1();">
+                                        <input name ="1stinstallment" type="text" class="form-control" id="1stinstallment" pattern="^\d*(\.\d{0,2})?$" placeholder="1st Installment (On Admission)" value=" {{$fee["1stinstallment"]}}">
                                         <span style="color:red">{{ $errors->first('1stinstallment') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">GST</label> <span style="color:red"> *</span>
-                                        <input name ="gst1" type="text" class="form-control" id="gst1" placeholder="GST" value="{{$fee["1gst"]}}"  onkeyup="sum1();">
+                                        <input name ="gst1" pattern="^\d*(\.\d{0,2})?$" type="text" class="form-control" id="gst1" placeholder="GST" value="{{$fee["1gst"]}}">
                                         <span style="color:red">{{ $errors->first('gst1') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Total</label> <span style="color:red"> *</span>
-                                        <input name ="total1" type="text" class="form-control" id="total1" placeholder="Total" value="{{$fee["1total"]}}">
+                                        <input name ="total1" pattern="^\d*(\.\d{0,2})?$" type="text" class="form-control" id="total1" placeholder="Total" value="{{$fee["1total"]}}">
                                         <span style="color:red">{{ $errors->first('total1') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">2nd Installment</label> <span style="color:red"> *</span>
-                                        <input name ="2ndinstallment" type="text" class="form-control" id="2ndinstallment" placeholder="2nd Installment" value="{{$fee["2ndinstallment"]}}" onkeyup="sum2();">
+                                        <input name ="2ndinstallment" pattern="^\d*(\.\d{0,2})?$" type="text" class="form-control" id="2ndinstallment" placeholder="2nd Installment" value="{{$fee["2ndinstallment"]}}">
                                         <span style="color:red">{{ $errors->first('2ndinstallment') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">GST</label> <span style="color:red"> *</span>
-                                        <input name ="gst2" type="text" class="form-control" id="gst2" placeholder="GST" value="{{$fee["2gst"]}}" onkeyup="sum2();">
+                                        <input name ="gst2" pattern="^\d*(\.\d{0,2})?$" type="text" class="form-control" id="gst2" placeholder="GST" value="{{$fee["2gst"]}}">
                                         <span style="color:red">{{ $errors->first('gst2') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Total</label> <span style="color:red"> *</span>
-                                        <input name ="total2" type="text" class="form-control" id="total2" placeholder="Total" value="{{$fee["2total"]}}">
+                                        <input name ="total2" pattern="^\d*(\.\d{0,2})?$" type="text" class="form-control" id="total2" placeholder="Total" value="{{$fee["2total"]}}">
                                         <span style="color:red">{{ $errors->first('total2') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">3rd Installment</label> <span style="color:red"> *</span>
-                                        <input name ="3rdinstallment" type="text" class="form-control" id="3rdinstallment" placeholder="3rd Installment" value="{{$fee["3rdinstallment"]}}" onkeyup="sum3();">
+                                        <input name ="3rdinstallment" pattern="^\d*(\.\d{0,2})?$" type="text" class="form-control" id="3rdinstallment" placeholder="3rd Installment" value="{{$fee["3rdinstallment"]}}">
                                         <span style="color:red">{{ $errors->first('3rdinstallment') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">GST</label> <span style="color:red"> *</span>
-                                        <input name ="gst3" type="text" class="form-control" id="gst3" placeholder="GST" value="{{$fee["3gst"]}}" onkeyup="sum3();">
+                                        <input name ="gst3" pattern="^\d*(\.\d{0,2})?$" type="text" class="form-control" id="gst3" placeholder="GST" value="{{$fee["3gst"]}}">
                                         <span style="color:red">{{ $errors->first('gst3') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Total</label> <span style="color:red"> *</span>
-                                        <input name ="total3" type="text" class="form-control" id="total3" placeholder="Total" value="{{$fee["3total"]}}">
+                                        <input name ="total3" pattern="^\d*(\.\d{0,2})?$" type="text" class="form-control" id="total3" placeholder="Total" value="{{$fee["3total"]}}">
                                         <span style="color:red">{{ $errors->first('total3') }}</span>
                                     </div>
                             </div>
@@ -169,7 +169,9 @@
        var first = document.getElementById('1stinstallment').value;
        var totalgst=parseInt(cgst)+parseInt(sgst);
        var gst=((parseInt(first)/parseInt(100))*parseInt(totalgst)).toFixed(); 
+       if (!isNaN(result)) {
        document.getElementById('gst1').value = gst;
+        }
        var gst1 = document.getElementById('gst1').value;
        var result = parseInt(first) + parseInt(gst1);
        if (!isNaN(result)) {
@@ -178,8 +180,10 @@
 
        var second = document.getElementById('2ndinstallment').value;
        var totalgst=parseInt(cgst)+parseInt(sgst);
-       var gst=((parseInt(second)/parseInt(100))*parseInt(totalgst)).toFixed(); 
+       var gst=((parseInt(second)/parseInt(100))*parseInt(totalgst)).toFixed();
+       if (!isNaN(result)) { 
        document.getElementById('gst2').value = gst;
+        }
        var gst2 = document.getElementById('gst2').value;
        var result = parseInt(second) + parseInt(gst2);
        if (!isNaN(result)) {
@@ -189,7 +193,9 @@
        var third = document.getElementById('3rdinstallment').value;
        var totalgst=parseInt(cgst)+parseInt(sgst);
        var gst=((parseInt(third)/parseInt(100))*parseInt(totalgst)).toFixed(); 
+       if (!isNaN(result)) {
        document.getElementById('gst3').value = gst;
+   }
        var gst3 = document.getElementById('gst3').value;
        var result = parseInt(third) + parseInt(gst3);
        if (!isNaN(result)) {
@@ -204,7 +210,9 @@
        var first = document.getElementById('1stinstallment').value;
        var totalgst=parseInt(cgst)+parseInt(sgst);
        var gst=((parseInt(first)/parseInt(100))*parseInt(totalgst)).toFixed(); 
+       if (!isNaN(result)) {
        document.getElementById('gst1').value = gst;
+       }
        var gst1 = document.getElementById('gst1').value;
        var result = parseInt(first) + parseInt(gst1);
        if (!isNaN(result)) {
@@ -214,7 +222,9 @@
        var second = document.getElementById('2ndinstallment').value;
        var totalgst=parseInt(cgst)+parseInt(sgst);
        var gst=((parseInt(second)/parseInt(100))*parseInt(totalgst)).toFixed(); 
+       if (!isNaN(result)) {
        document.getElementById('gst2').value = gst;
+       }
        var gst2 = document.getElementById('gst2').value;
        var result = parseInt(second) + parseInt(gst2);
        if (!isNaN(result)) {
@@ -224,7 +234,9 @@
        var third = document.getElementById('3rdinstallment').value;
        var totalgst=parseInt(cgst)+parseInt(sgst);
        var gst=((parseInt(third)/parseInt(100))*parseInt(totalgst)).toFixed(); 
+       if (!isNaN(result)) {
        document.getElementById('gst3').value = gst;
+       }
        var gst3 = document.getElementById('gst3').value;
        var result = parseInt(third) + parseInt(gst3);
        if (!isNaN(result)) {
@@ -232,5 +244,17 @@
        }
 
     });
+
+$( "#editfee" ).submit(function() 
+{
+    var from_year=$('#from_year').val();
+    var to_year=$('#to_year').val();
+    var my_val=parseInt(from_year)+1;
+    if(my_val !=to_year)
+    {
+        alert('Please enter correct academic year...')
+        return false;
+    }
+});
 </script>
 @endsection

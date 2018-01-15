@@ -11,7 +11,7 @@
 @endsection
 @section('content')
 <div class="card">
-                            <form action="{{ url('/enquiry/'.$enquiry->id.'/edit') }}" method="post" id="formattributes">
+                            <form action="{{ url('/enquiry/'.$enquiry->id.'/edit') }}" method="post" id="editenquiry">
                                 {{ method_field('PATCH')}}
                                 {{ csrf_field() }}
                             <div class="card-header">
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Name</label> <span style="color:red"> *</span>
-                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Enquirer name" value="{{ $enquiry->name }}" required="">
+                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Enquirer name" pattern="[a-zA-Z\s]+" value="{{ $enquiry->name }}" required="">
                                         <span style="color:red">{{ $errors->first('name') }}</span>
                                     </div>
                                     <div class="form-group">
@@ -96,17 +96,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="fatherno">Father's Number</label> 
-                                        <input name ="fatherno" type="tel" class="form-control" id="fatherno" placeholder="Father's Number" value="{{ $enquiry->fatherno }}">
+                                        <input name ="fatherno" type="tel" class="form-control" id="fatherno" placeholder="Father's Number" value="{{ $enquiry->fatherno }}" pattern="[789][0-9]{9}">
                                         <span style="color:red">{{ $errors->first('fatherno') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="motherno">Mother's Number</label>
-                                        <input name ="motherno" type="tel" class="form-control" id="motherno" placeholder="Mother's Number" value="{{ $enquiry->motherno }}">
+                                        <input name ="motherno" type="tel" class="form-control" id="motherno" placeholder="Mother's Number" value="{{ $enquiry->motherno }}" pattern="[789][0-9]{9}">
                                         <span style="color:red">{{ $errors->first('motherno') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="landline">Landline</label>
-                                        <input name ="landline" type="tel" class="form-control" id="landline" placeholder="Landline" value="{{ $enquiry->landline }}">
+                                        <input name ="landline" type="tel" class="form-control" id="landline" placeholder="Landline" value="{{ $enquiry->landline }}" pattern="[0-9]{8}">
                                         <span style="color:red">{{ $errors->first('landline') }}</span>
                                     </div>
                             </div>
@@ -164,6 +164,25 @@ $("#formattributes").submit(function() {
         $("#otherschool").val(" ");
     }
     });
+$( "#editenquiry" ).submit(function() 
+{
+    var from_year=$('#from_year').val();
+    var to_year=$('#to_year').val();
+    var my_val=parseInt(from_year)+1;
+    if(my_val !=to_year)
+    {
+        alert('Please enter correct academic year...')
+        return false;
+    }
+    var school = $("#school").val();
+    var school1=$("#otherschool").val();
+    if (school === 'OTHERS' && school1=="") 
+    {
+        alert("Please enter School name.");
+        return false;
+    } 
+});
 
 </script>
 @endsection
+

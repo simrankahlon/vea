@@ -4,7 +4,7 @@
             <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/testscheduler') }}">Test Schedule</a>
             </li>
-            <li class="breadcrumb-item"><a href="#">{{ $testscheduler->portion_set }}</a>
+            <li class="breadcrumb-item active">{{ $testscheduler->portion_set }}
             </li>
             <li class="breadcrumb-item active">Edit</li>
         </ol>
@@ -15,7 +15,7 @@
 <input type="hidden"  value="{{$url}}" id="url"/>
 @section('content')
 <div class="card">
-                            <form action="{{ url('/testscheduler/'.$testscheduler->id.'/edit') }}" method="post" id="formattributes">
+                            <form action="{{ url('/testscheduler/'.$testscheduler->id.'/edit') }}" method="post" id="edittestschedule">
                                 {{ method_field('PATCH')}}
                                 {{ csrf_field() }}
                             <div class="card-header">
@@ -23,7 +23,7 @@
                             </div>
                            <div class="card-block">
                                     <div class="form-group">
-                                    <label for="year">Academic Year</label><span style="color:red"> *</span>
+                                    <label for="year">Academic Year</label>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-2">
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <label for="branch">Branch</label><span style="color:red"> * </span>
+                                    <label for="branch">Branch</label>
                                     <select id="branch" name="branch" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Branch::all() as $value => $code)
@@ -54,7 +54,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="ann_date">Announcement Date</label><span style="color:red"> *</span>
+                                            <label for="ann_date">Announcement Date</label>
                                             <input name ="ann_date" type="date" class="form-control" id="ann_date"  placeholder="Announcement Date" value="{{$testscheduler->announcement_date}}">
                                             <span style="color:red">{{ $errors->first('ann_date') }}</span>
                                         </div>
@@ -63,7 +63,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <label for="standard">Standard</label><span style="color:red"> *</span>
+                                    <label for="standard">Standard</label>
                                     <select id="standard" name="standard" class="form-control" size="1">
                                        <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Standard::all() as $value => $code)
@@ -77,7 +77,7 @@
                                     <span style="color:red">{{ $errors->first('standard') }}</span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="batch">Batch</label><span style="color:red"> * </span>
+                                        <label for="batch">Batch</label>
                                         <select id="batch" name="batch" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach($batch as $bat)
@@ -93,7 +93,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="test_date">Test Date</label><span style="color:red"> *</span>
+                                            <label for="test_date">Test Date</label>
                                             <input name ="test_date" type="date" class="form-control" id="test_date"  placeholder="Test Date" value="{{ $testscheduler->test_date }}">
                                             <span style="color:red">{{ $errors->first('test_date') }}</span>
                                         </div>
@@ -102,17 +102,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="portion">Portion (Set)</label> <span style="color:red"> *</span>
+                                        <label for="portion">Portion (Set)</label>
                                         <input name ="portion" type="text" class="form-control" id="portion" placeholder="Portion (Set)" value="{{ $testscheduler->portion_set }}">
                                         <span style="color:red">{{ $errors->first('portion') }}</span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="marks">Marks</label> <span style="color:red"> *</span>
+                                        <label for="marks">Marks</label>
                                         <input name ="marks" type="text" class="form-control" id="marks" placeholder="Marks" value="{{ $testscheduler->marks }}" pattern="[0-9]{1,3}">
                                         <span style="color:red">{{ $errors->first('marks') }}</span>
                                     </div>
                                     <div class="form-group">
-                                    <label for="qp_ready">Question paper ready</label><span style="color:red"> *</span>
+                                    <label for="qp_ready">Question paper ready</label>
                                     <select id="qp_ready" name="qp_ready" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
@@ -126,7 +126,7 @@
                                     <span style="color:red">{{ $errors->first('qp_ready') }}</span>
                                     </div>
                                     <div class="form-group">
-                                    <label for="xerox">Xerox ready</label><span style="color:red"> *</span>
+                                    <label for="xerox">Xerox ready</label>
                                     <select id="xerox" name="xerox" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
@@ -140,14 +140,14 @@
                                     <span style="color:red">{{ $errors->first('xerox') }}</span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="corr_done">Correction done by</label> <span style="color:red"> *</span>
-                                        <input name ="corr_done" type="text" class="form-control" id="corr_done" placeholder="Correction done by" value="{{ $testscheduler->correction_done_by }}">
+                                        <label for="corr_done">Correction done by</label>
+                                        <input name ="corr_done" type="text" class="form-control" id="corr_done" placeholder="Correction done by" value="{{ $testscheduler->correction_done_by }}" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('corr_done') }}</span>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="dis_date">Distribution Date</label><span style="color:red"> *</span>
+                                            <label for="dis_date">Distribution Date</label>
                                             <input name ="dis_date" type="date" class="form-control" id="dis_date"  placeholder="Distribution Date" value="{{ $testscheduler->distribution_date }}">
                                             <span style="color:red">{{ $errors->first('dis_date') }}</span>
                                         </div>
@@ -156,7 +156,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <label for="an_uploaded">Answer key uploaded</label><span style="color:red"> *</span>
+                                    <label for="an_uploaded">Answer key uploaded</label>
                                     <select id="an_uploaded" name="an_uploaded" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
@@ -170,7 +170,7 @@
                                     <span style="color:red">{{ $errors->first('an_uploaded') }}</span>
                                     </div>
                                     <div class="form-group">
-                                    <label for="msg_sent">Msg sent</label><span style="color:red"> *</span>
+                                    <label for="msg_sent">Msg sent</label>
                                     <select id="msg_sent" name="msg_sent" class="form-control" size="1">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
@@ -240,5 +240,18 @@ $("#standard" ).change(function()
     }
     
   });
+
+$( "#edittestschedule" ).submit(function() 
+{
+    var from_year=$('#from_year').val();
+    var to_year=$('#to_year').val();
+    var my_val=parseInt(from_year)+1;
+    if(my_val !=to_year)
+    {
+        alert('Please enter correct academic year...')
+        return false;
+    }
+});
+
 </script>
 @endsection

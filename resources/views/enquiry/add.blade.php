@@ -62,7 +62,7 @@ $toyear=Session::get('toyear');
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Name</label> <span style="color:red"> *</span>
-                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Enquirer name" value="{{ old('name') }}" required="">
+                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Enquirer name" value="{{ old('name') }}" required="" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('name') }}</span>
                                     </div>
                                     <div class="form-group">
@@ -81,17 +81,17 @@ $toyear=Session::get('toyear');
                                     </div>
                                     <div class="form-group">
                                         <label for="fatherno">Father's Number</label> 
-                                        <input name ="fatherno" type="tel" class="form-control" id="fatherno" placeholder="Father's Number" value="{{ old('fatherno') }}">
+                                        <input name ="fatherno" type="tel" class="form-control" id="fatherno" placeholder="Father's Number" value="{{ old('fatherno') }}" pattern="[789][0-9]{9}">
                                         <span style="color:red">{{ $errors->first('fatherno') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="motherno">Mother's Number</label>
-                                        <input name ="motherno" type="tel" class="form-control" id="motherno" placeholder="Mother's Number" value="{{ old('motherno') }}">
+                                        <input name ="motherno" type="tel" class="form-control" id="motherno" placeholder="Mother's Number" value="{{ old('motherno') }}" pattern="[789][0-9]{9}">
                                         <span style="color:red">{{ $errors->first('motherno') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="landline">Landline</label>
-                                        <input name ="landline" type="tel" class="form-control" id="landline" placeholder="Landline" value="{{ old('landline') }}">
+                                        <input name ="landline" type="tel" class="form-control" id="landline" placeholder="Landline" value="{{ old('landline') }}" pattern="[0-9]{8}">
                                         <span style="color:red">{{ $errors->first('landline') }}</span>
                                     </div>
                             </div>
@@ -130,6 +130,13 @@ $("#addenquiry").submit(function() {
     alert("Please enter atlease one number.");
     return false;
   }
+    var school = $("#school").val();
+    var school1=$("#otherschool").val();
+    if (school === 'OTHERS' && school1=="") 
+    {
+        alert("Please enter School name.");
+        return false;
+    } 
 });
 </script>
 @endsection

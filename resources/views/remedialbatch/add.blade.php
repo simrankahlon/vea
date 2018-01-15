@@ -119,7 +119,7 @@ $toyear=Session::get('toyear');
                                     </div>
                                     <div class="form-group">
                                         <label for="teacher_name">Teacher Name</label> <span style="color:red"> *</span>
-                                        <input name ="teacher_name" type="text" class="form-control" id="teacher_name" placeholder="Teacher Name" value="{{ old('teacher_name') }}" required="">
+                                        <input name ="teacher_name" type="text" class="form-control" id="teacher_name" placeholder="Teacher Name" value="{{ old('teacher_name') }}" required="" pattern="[A-Z a-z\s]{3,}">
                                         <span style="color:red">{{ $errors->first('teacher_name') }}</span>
                                     </div>
                             </div>

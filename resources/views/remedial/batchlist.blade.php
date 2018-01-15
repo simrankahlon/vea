@@ -70,7 +70,7 @@
                             <td> 
                                 <div> 
                                     <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/remedial/'.$nine->id.'/'.$standard1.'/newattendance') }}'">Add</button>
-                                    <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='{{ url('/remedial/'.$nine->id.'/'.$standard1.'/listattendance') }}'">List</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="window.location.href='{{ url('/remedial/'.$nine->id.'/'.$standard1.'/listattendance') }}'">List</button>
                                     <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='{{ url('/remedial/'.$nine->id.'/'.$standard1.'/summaryreport') }}'">Summary Report</button>
                                 </div>
                             </td>
@@ -107,7 +107,7 @@
                             <td> 
                                 <div> 
                                     <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/remedial/'.$ten->id.'/'.$standard2.'/newattendance') }}'">Add</button>
-                                    <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='{{ url('/remedial/'.$ten->id.'/'.$standard2.'/listattendance') }}'">List</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="window.location.href='{{ url('/remedial/'.$ten->id.'/'.$standard2.'/listattendance') }}'">List</button>
                                     <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='{{ url('/remedial/'.$ten->id.'/'.$standard2.'/summaryreport') }}'">Summary Report</button>
                                 </div>
                             </td>

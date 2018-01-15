@@ -28,11 +28,11 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-2">
-                                            <input type="number" name="from_year" min="2015" class="form-control" max="2030" step="1" id="from_year" value="{{$admission->fromyear}}">
+                                            <input type="number" name="from_year" min="2015" class="form-control" max="2030" step="1" id="from_year" value="{{$admission->fromyear}}" required="">
                                             <span style="color:red">{{ $errors->first('from_year') }}</span>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" name="to_year" id="to_year" min="2015" class="form-control" max="2030" step="1" value="{{$admission->toyear}}">
+                                            <input type="number" name="to_year" id="to_year" required="" min="2015" class="form-control" max="2030" step="1" value="{{$admission->toyear}}">
                                             <span style="color:red">{{ $errors->first('to_year') }}</span>
                                         </div>
                                         <div class="col-md-8">     
@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="form-group">
                                     <label for="branch">Branch</label><span style="color:red"> * </span>
-                                    <select id="branch" name="branch" class="form-control" size="1">
+                                    <select id="branch" name="branch" class="form-control" size="1" required="">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Branch::all() as $value => $code)
                                             @if($admission->branch == $code)
@@ -56,7 +56,7 @@
                                         <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="date">Date</label><span style="color:red"> *</span>
-                                            <input name ="date" type="date" class="form-control" id="date"  placeholder="Date" value="{{$admission->date}}" size="1">
+                                            <input name ="date" type="date" class="form-control" id="date"  placeholder="Date" value="{{$admission->date}}" size="1" required="">
                                             <span style="color:red">{{ $errors->first('date') }}</span>
                                         </div>
                                         </div>
@@ -65,17 +65,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Name</label> <span style="color:red"> *</span>
-                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Enquirer name" value="{{ $admission->studentname }}">
+                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Student name" pattern="[A-Z a-z\s]{3,}" value="{{ $admission->studentname }}" required="" >
                                         <span style="color:red">{{ $errors->first('name') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="address">Address</label><span style="color:red"> * </span>
-                                        <textarea name ="address" class="form-control" id="address" placeholder="Address">{{ $admission->address }}</textarea>
+                                        <textarea name ="address" class="form-control" required="" id="address" placeholder="Address">{{ $admission->address }}</textarea>
                                         <span style="color:red">{{ $errors->first('address') }}</span>
                                     </div> 
                                     <div class="form-group">
                                     <label for="school">School</label> <span style="color:red"> *</span>
-                                    <select id="school" name="school" class="form-control" size="1">
+                                    <select id="school" name="school" class="form-control" size="1" required="">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Schools::all() as $value => $code)
                                             @if($admission->school == $code)
@@ -93,17 +93,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="fatherno">Father's Number</label> 
-                                        <input name ="fatherno" type="tel" class="form-control" id="fatherno" placeholder="Father's Number" value="{{ $admission->fatherno }}">
+                                        <input name ="fatherno" type="tel" class="form-control" id="fatherno" placeholder="Father's Number" value="{{ $admission->fatherno }}" pattern="[789][0-9]{9}">
                                         <span style="color:red">{{ $errors->first('fatherno') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="motherno">Mother's Number</label>
-                                        <input name ="motherno" type="tel" class="form-control" id="motherno" placeholder="Mother's Number" value="{{ $admission->motherno }}">
+                                        <input name ="motherno" type="tel" class="form-control" id="motherno" placeholder="Mother's Number" value="{{ $admission->motherno }}" pattern="[789][0-9]{9}">
                                         <span style="color:red">{{ $errors->first('motherno') }}</span>
                                     </div>
                                     <div class="form-group">
                                     <label for="branch">Whatsapp Text on</label><span style="color:red"> * </span>
-                                    <select id="whatsapptext" name="whatsapptext" class="form-control" size="1">
+                                    <select id="whatsapptext" name="whatsapptext" class="form-control" size="1" required="">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Whatsappon::all() as $value => $code)
                                             @if($admission->whatsappon == $code)
@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="landline">Landline</label>
-                                        <input name ="landline" type="tel" class="form-control" id="landline" placeholder="Landline" value="{{ $admission->landline }}">
+                                        <input name ="landline" type="tel" class="form-control" id="landline" placeholder="Landline" value="{{ $admission->landline }}" pattern="[0-9]{8}">
                                         <span style="color:red">{{ $errors->first('landline') }}</span>
                                     </div>
                                     <div class="form-group">
@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="form-group">
                                     <label for="standard">Standard</label><span style="color:red"> *</span>
-                                    <select id="standard" name="standard" class="form-control" size="1">
+                                    <select id="standard" name="standard" class="form-control" size="1" required="">
                                         <option value="">Please select</option>
                                         @foreach(App\Http\AcatUtilities\Standard::all() as $value => $code)
                                             @if($admission->standard == $code)
@@ -141,7 +141,7 @@
                                     </div>
                                    <div class="form-group">
                                         <label for="admbatch">Admission for Batch</label><span style="color:red"> * </span>
-                                        <select id="admbatch" name="admbatch" class="form-control" size="1">
+                                        <select id="admbatch" name="admbatch" class="form-control" size="1" required="">
                                         <option value="">Please select</option>
                                         @foreach($batch as $bat)
                                             @if($admission->admissionbatch == $bat->batchname)
@@ -189,7 +189,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="pname">Parent's Name</label>
-                                        <input name ="pname" type="text" class="form-control" id="pname" placeholder="Parent's Name" value="{{ $admission->parentname }}">
+                                        <input name ="pname" type="text" class="form-control" id="pname" placeholder="Parent's Name" value="{{ $admission->parentname }}" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('pname') }}</span>
                                     </div>
                                     <div class="form-group">
@@ -204,27 +204,27 @@
                                     </div> 
                                     <div class="form-group">
                                         <label for="onumber">Office Number</label>
-                                        <input name ="onumber" type="tel" class="form-control" id="onumber" placeholder="Office Number" value="{{ $admission->officenumber }}">
+                                        <input name ="onumber" type="tel" class="form-control" id="onumber" placeholder="Office Number" value="{{ $admission->officenumber }}" pattern="[0-9]{8}">
                                         <span style="color:red">{{ $errors->first('onumber') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="lasttermpercent">Last Term Exam %</label>
-                                        <input name ="lasttermpercent" type="text" class="form-control" id="lasttermpercent" placeholder="Last Term Exam %" value="{{ $admission->lasttermpercent }}">
+                                        <input name ="lasttermpercent" type="text" class="form-control" id="lasttermpercent" placeholder="Last Term Exam %" value="{{ $admission->lasttermpercent }}" pattern="[0-9]+(\.[0-9]{0,2})?%?">
                                         <span style="color:red">{{ $errors->first('lasttermpercent') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="english1">English I</label>
-                                        <input name ="english1" type="text" class="form-control" id="english1" placeholder="English I" value="{{ $admission->english1 }}">
+                                        <input name ="english1" type="text" class="form-control" id="english1" placeholder="English I" value="{{ $admission->english1 }}" pattern="[0-9]+(\.[0-9]{0,2})?%?">
                                         <span style="color:red">{{ $errors->first('english1') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="english2">English II</label>
-                                        <input name ="english2" type="text" class="form-control" id="english2" placeholder="English II" value="{{ $admission->english2 }}">
+                                        <input name ="english2" type="text" class="form-control" id="english2" placeholder="English II" value="{{ $admission->english2 }}" pattern="[0-9]+(\.[0-9]{0,2})?%?">
                                         <span style="color:red">{{ $errors->first('english2') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="overallpercent">Overall %</label>
-                                        <input name ="overallpercent" type="text" class="form-control" id="overallpercent" placeholder="Overall %" value="{{ $admission->overallpercent }}">
+                                        <input name ="overallpercent" type="text" class="form-control" id="overallpercent" placeholder="Overall %" value="{{ $admission->overallpercent }}" pattern="[0-9]+(\.[0-9]{0,2})?%?">
                                         <span style="color:red">{{ $errors->first('overallpercent') }}</span>
                                     </div>
                             </div>
@@ -273,6 +273,22 @@ $("#addadmission").submit(function() {
     alert("Please enter atlease one number.");
     return false;
   }
+
+    var from_year=$('#from_year').val();
+    var to_year=$('#to_year').val();
+    var my_val=parseInt(from_year)+1;
+    if(my_val !=to_year)
+    {
+        alert('Please enter correct academic year...')
+        return false;
+    }
+    var school = $("#school").val();
+    var school1=$("#otherschool").val();
+    if (school === 'OTHERS' && school1=="") 
+    {
+        alert("Please enter School name.");
+        return false;
+    }
 });
 
 $("#standard" ).change(function() 

@@ -235,6 +235,14 @@ $("#admbatch" ).change(function()
 
 $("#addadmission").submit(function() {
 
+    var from_year=$('#from_year').val();
+    var to_year=$('#to_year').val();
+    var my_val=parseInt(from_year)+1;
+    if(my_val !=to_year)
+    {
+        alert('Please enter correct academic year...')
+        return false;
+    }
     var feeval=$("#feecheck").val();
     if(feeval!=null)
     {

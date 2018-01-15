@@ -20,7 +20,7 @@
                             <div class="card-block">
                                     <div class="form-group">
                                         <label for="name">Name</label> <span style="color:red"> *</span>
-                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Name" value="{{ old('name') }}" required="">
+                                        <input name ="name" type="text" class="form-control" id="name" placeholder="Name" value="{{ old('name') }}" required="" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('name') }}</span>
                                     </div>
                                     <div class="form-group row">

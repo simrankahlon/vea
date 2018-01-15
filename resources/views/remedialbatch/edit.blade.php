@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="teacher_name">Teacher Name</label> <span style="color:red"> *</span>
-                                        <input name ="teacher_name" type="text" class="form-control" id="teacher_name" placeholder="Teacher Name" value="{{ $batch->teacher_name }}" required="">
+                                        <input name ="teacher_name" type="text" class="form-control" id="teacher_name" placeholder="Teacher Name" value="{{ $batch->teacher_name }}" required="" pattern="[A-Z a-z\s]{3,}">
                                         <span style="color:red">{{ $errors->first('teacher_name') }}</span>
                                     </div>
                             </div>
@@ -219,6 +219,14 @@ $("#editbatch").submit(function(){
        
         $('#from1').val("");
         $('#to1').val("");
+    }
+    var from_year=$('#from_year').val();
+    var to_year=$('#to_year').val();
+    var my_val=parseInt(from_year)+1;
+    if(my_val !=to_year)
+    {
+        alert('Please enter correct academic year...')
+        return false;
     }
    
 });

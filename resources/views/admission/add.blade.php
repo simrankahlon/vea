@@ -232,12 +232,12 @@ $toyear=Session::get('toyear');
                                     
                                     <div class="form-group">
                                         <label for="pname">Parent's Name</label>
-                                        <input name ="pname" type="text" class="form-control" id="pname" placeholder="Parent's Name" value="{{ old('pname') }}" pattern="[A-Za-z]">
+                                        <input name ="pname" type="text" class="form-control" id="pname" placeholder="Parent's Name" value="{{ old('pname') }}" pattern="[a-zA-Z\s]+">
                                         <span style="color:red">{{ $errors->first('pname') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="occupation">Occupation</label>
-                                        <input name ="occupation" type="text" class="form-control" id="occupation" placeholder="Occupation" value="{{ old('occupation') }}" pattern="[A-Za-z]">
+                                        <input name ="occupation" type="text" class="form-control" id="occupation" placeholder="Occupation" value="{{ old('occupation') }}">
                                         <span style="color:red">{{ $errors->first('occupation') }}</span>
                                     </div>
                                     <div class="form-group">
@@ -406,6 +406,22 @@ $("#addadmission").submit(function() {
       alert("Please enter father's number.");
       return false;
   }
+
+    var from_year=$('#from_year').val();
+    var to_year=$('#to_year').val();
+    var my_val=parseInt(from_year)+1;
+    if(my_val !=to_year)
+    {
+        alert('Please enter correct academic year...')
+        return false;
+    }
+    var school = $("#school").val();
+    var school1=$("#otherschool").val();
+    if (school === 'OTHERS' && school1=="") 
+    {
+        alert("Please enter School name.");
+        return false;
+    } 
 
   var feeval=$("#feecheck").val();
     if(feeval!=null)

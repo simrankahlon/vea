@@ -23,7 +23,7 @@ class TodolistController extends Controller
 
      public function index()
     {
-        $todolist=TodoList::orderBy('updated_at', 'desc')->paginate(10);
+        $todolist=TodoList::orderBy('updated_at', 'desc')->paginate(50);
         return view('todolist/index',compact('todolist'));
     }
 
@@ -87,7 +87,7 @@ class TodolistController extends Controller
             'searchtxt' => 'required',
             ]);
         $searchterm=$request->searchtxt;
-        $todolist=TodoList::where('name','like', $searchterm.'%')->orderBy('updated_at', 'desc')->paginate(10);
+        $todolist=TodoList::where('name','like', $searchterm.'%')->orderBy('updated_at', 'desc')->paginate(50);
 
         return view('todolist/index',compact('todolist'));
     }

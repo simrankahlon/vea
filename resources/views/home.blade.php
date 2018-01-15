@@ -84,11 +84,10 @@ $toyear=Session::get('toyear');
                                                 <thead class="thead-default">
                                                 <tr>
                                                     <th>Class</th>
-                                                    <th>Date</th>
+                                                    <th>Batch</th>
+                                                    <th>Test Date</th>
                                                     <th>Portion Set</th>
                                                     <th>Marks</th>
-                                                    <th>Correction done by</th>
-                                                    <th>Details</th>
                                                     <th>Activity</th>
                                                     <th>Action</th>
                                                     </tr>
@@ -102,12 +101,12 @@ $toyear=Session::get('toyear');
                                                                 <div>{{$value}}</div>
                                                             @endif
                                                         @endforeach
-                                                        <div><strong>Batch : </strong>{{$ts->batch}}</div>
                                                     </td>
                                                     <td>
-                                                        <div><strong>Ann. Date : </strong>{{ date('d-m-Y', strtotime($ts->announcement_date)) }}</div>
-                                                        <div><strong>Test Date : </strong>{{ date('d-m-Y', strtotime($ts->test_date)) }}</div>
-                                                        <div><strong>Distribution Date : </strong>{{ date('d-m-Y', strtotime($ts->distribution_date)) }}</div>
+                                                        <div>{{$ts->batch}}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ date('d-m-Y', strtotime($ts->test_date)) }}</div>
                                                     </td>
                                                     <td>
                                                         <div>
@@ -116,31 +115,6 @@ $toyear=Session::get('toyear');
                                                     </td>
                                                     <td>
                                                         <div>{{$ts->marks}}</div>
-                                                    </td>
-                                                    <td>
-                                                        <div>{{$ts->correction_done_by}}</div>
-                                                    </td>
-                                                    <td>
-                                                        @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
-                                                            @if($ts->question_paper_ready == $code)
-                                                                <div><strong>Quest. paper ready : </strong>{{$value}}</div>
-                                                            @endif
-                                                        @endforeach
-                                                        @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
-                                                            @if($ts->xerox == $code)
-                                                                <div><strong>Xerox ready : </strong>{{$value}}</div>
-                                                            @endif
-                                                        @endforeach
-                                                        @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
-                                                            @if($ts->answer_key_uploaded == $code)
-                                                                <div><strong>Answer key uploaded : </strong>{{$value}}</div>
-                                                            @endif
-                                                        @endforeach
-                                                        @foreach(App\Http\AcatUtilities\Yesno::all() as $value => $code)
-                                                            @if($ts->msg_send== $code)
-                                                                <div><strong>Msg. Sent : </strong>{{$value}}</div>
-                                                            @endif
-                                                        @endforeach
                                                     </td>
                                                     <td>
                                                         <strong>{{$ts->updated_at->diffForHumans()}}</strong>
