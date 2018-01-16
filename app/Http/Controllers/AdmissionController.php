@@ -18,7 +18,7 @@ use Hash;
 use App\RemedialBatch;
 use App\Mark;
 use App\Attendance;
-use App\SchoolMark;
+use App\Schoolmark;
 use App\RemedialAttendance;
 
 class AdmissionController extends Controller
@@ -694,7 +694,7 @@ class AdmissionController extends Controller
                     ->where('standard',$admission->standard)
                     ->get();
 
-        $schoolmarks=SchoolMark::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)
+        $schoolmarks=Schoolmark::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)
                     ->where('batch',$admission->admissionbatch)
                     ->where('standard',$admission->standard)
                     ->get();

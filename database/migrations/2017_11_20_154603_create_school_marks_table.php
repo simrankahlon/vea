@@ -15,15 +15,15 @@ class CreateSchoolMarksTable extends Migration
     {
         Schema::create('school_marks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('fromyear');
-            $table->integer('toyear');
-            $table->date('date');
-            $table->string('branch');
-            $table->string('standard');
-            $table->string('batch');
-            $table->string('topic_name');
-            $table->string('portion');
-            $table->integer('total_marks');
+            $table->integer('fromyear')->nullable();
+            $table->integer('toyear')->nullable();
+            $table->date('date')->nullable();
+            $table->string('branch')->nullable();
+            $table->string('standard')->nullable();
+            $table->string('batch')->nullable();
+            $table->string('topic_name')->nullable();
+            $table->string('portion')->nullable();
+            $table->integer('total_marks')->nullable();
             $table->double('passing_percent')->nullable();
             $table->double('passing_marks')->nullable();
             $table->timestamps();

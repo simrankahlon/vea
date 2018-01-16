@@ -92,7 +92,7 @@ $toyear=Session::get('toyear');
                                                     <th>Action</th>
                                                     </tr>
                                             </thead>
-                                            <tbody id="tasks-list">
+                                            <tbody>
                                              @foreach ($testscheduler as $ts)
                                                 <tr>
                                                     <td>
