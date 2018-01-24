@@ -136,7 +136,7 @@
                                                     <td>
                                                    <div class="float-xs-right"> 
                                                     <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/batch/'.$bat->id.'/edit') }}'">Edit</button>
-                                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="javascript:confirmDelete('{{ url('/batch/'.$bat->id.'/delete') }}')" disabled="">Delete</button>
+                                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="javascript:confirmDelete('{{ url('/batch/'.$bat->id.'/delete') }}')">Delete</button>
                                                     </div>
                                                 </td>
                                                    
