@@ -247,7 +247,7 @@ $toyear=Session::get('toyear');
                                     </div> 
                                     <div class="form-group">
                                         <label for="onumber">Office Number</label>
-                                        <input name ="onumber" type="tel" class="form-control" id="onumber" placeholder="Office Number" value="{{ old('onumber') }}" pattern="[0-9]{8}">
+                                        <input name ="onumber" type="tel" class="form-control" id="onumber" placeholder="Office Number" value="{{ old('onumber') }}" pattern="[0-9]{8,10}">
                                         <span style="color:red">{{ $errors->first('onumber') }}</span>
                                     </div>
                                     <div class="form-group">

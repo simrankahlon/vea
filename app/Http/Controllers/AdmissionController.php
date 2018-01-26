@@ -152,7 +152,6 @@ class AdmissionController extends Controller
             'admbatch'=>'required',
             'timings'=>'required',
             'days'=>'required',
-            'onumber'=>'nullable|digits:10',
             ]);
 
         $fee_id=Fee::where('standard','=',$request->standard)
@@ -249,7 +248,6 @@ class AdmissionController extends Controller
             'admbatch'=>'required',
             'timings'=>'required',
             'days'=>'required',
-            'onumber'=>'nullable|digits:10',
             ]);
 
          $fee_id=Fee::where('standard','=',$request->standard)
@@ -350,7 +348,7 @@ class AdmissionController extends Controller
         $admission=Admission::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('studentname','like',$searchterm.'%')
         ->where('admissionbatch','=',$batch->batchname)
         ->where('standard','=',$standard)
-        ->paginate(50);
+        ->orderBy('studentname')->paginate(50);
        
         return view('admission.admissionbatchlist',compact('admission','standard','batch'));
     }
@@ -362,7 +360,7 @@ class AdmissionController extends Controller
         $branch=Session::get('branch');
         $admission=Admission::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('admissionbatch','=',$batch->batchname)
         ->where('standard','=',$standard)
-        ->paginate(50);
+        ->orderBy('studentname')->paginate(50);
        
         return view('admission.admissionbatchlist',compact('admission','standard','batch'));
     }
