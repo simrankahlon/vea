@@ -25,13 +25,17 @@
                                     <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="hf-email">Date : </label>
                                     <div class="col-md-9">
-                                    {{$admission->date}}
+                                    {{ date('d-m-Y', strtotime($admission->date)) }}
                                     </div>
                                     </div>
                                     <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="hf-email">Student Name : </label>
-                                    <div class="col-md-9">
+                                    <div class="col-md-3">
                                     {{$admission->studentname}}
+                                    </div>
+                                    
+                                    <div class="col-md-4" style="float:left;">
+                                    <img src="{{ asset('studentimages/'.$admission->studentimage) }}" class="img-thumbnail" height="80" width="180"/>
                                     </div>
                                     </div>
                                     <div class="form-group row">

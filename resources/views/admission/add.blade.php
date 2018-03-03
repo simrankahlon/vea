@@ -23,7 +23,7 @@ $toyear=Session::get('toyear');
 <input type="hidden"  value="1" id="feecheck" class="feecheck"/>
 
 <div class="card">
-                            <form action="{{ url('/admission/create') }}" method="post" name="addadmission" id="addadmission">
+                            <form action="{{ url('/admission/create') }}" method="post" name="addadmission" id="addadmission" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                             <div class="card-header">
                                 <strong>New Admission</strong>
@@ -269,6 +269,11 @@ $toyear=Session::get('toyear');
                                         <label for="overallpercent">Overall %</label>
                                         <input name ="overallpercent" type="text" class="form-control" id="overallpercent" placeholder="Overall %" value="{{ old('overallpercent') }}" pattern="[0-9]+(\.[0-9]{0,2})?%?">
                                         <span style="color:red">{{ $errors->first('overallpercent') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Student Image</label>
+                                        <input name ="student_image" type="file" class="form-control" id="student_image" placeholder="Select an image" value={{ old('student_image') }}>
+                                       <span style="color:red">{{ $errors->first('student_image') }}{{Session::get('student_image')}}</span>
                                     </div>
                             </div>
                             <div class="card-footer">

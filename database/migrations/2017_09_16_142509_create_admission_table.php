@@ -82,6 +82,7 @@ class CreateAdmissionTable extends Migration
             $table->boolean('remedial_list')->nullable();
             $table->string('remedialbatch')->nullable();
             $table->string('remedialbranch')->nullable();
+            $table->string('studentimage')->nullable();
             $table->timestamps();
         });
     }

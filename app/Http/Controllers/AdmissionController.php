@@ -152,6 +152,7 @@ class AdmissionController extends Controller
             'admbatch'=>'required',
             'timings'=>'required',
             'days'=>'required',
+            'student_image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1500',
             ]);
 
         $fee_id=Fee::where('standard','=',$request->standard)
@@ -191,6 +192,16 @@ class AdmissionController extends Controller
         $admission->overallpercent=$request->overallpercent;
         $admission->fee_id=$fee_id;
         $admission->save();
+        if($request->file('student_image')!="")
+        {
+            $file = $request->file('student_image');
+            $fileName = $admission->id.'-'.$admission->studentname.'-'.$admission->fromyear.'-'.$admission->toyear.'.jpg';
+            $destinationPath = public_path().'/studentimages/';
+            $file->move($destinationPath,$fileName);
+            $admission->studentimage=$fileName;
+            $admission->update();
+        }
+        
 
         if($check==2)
         {
@@ -248,6 +259,7 @@ class AdmissionController extends Controller
             'admbatch'=>'required',
             'timings'=>'required',
             'days'=>'required',
+            'student_image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1500',
             ]);
 
          $fee_id=Fee::where('standard','=',$request->standard)
@@ -283,7 +295,23 @@ class AdmissionController extends Controller
          $admission->english2=$request->english2;
          $admission->overallpercent=$request->overallpercent;
          $admission->fee_id=$fee_id;
-        $admission->update();
+         if($admission->studentimage!="")
+         {
+            $fileexists=$admission->studentimage;
+            $path=public_path().'/studentimages/'.$fileexists;
+            File::delete($path);
+         }
+
+         if($request->file('student_image')!="")
+         {
+            $file = $request->file('student_image');
+            $fileName = $admission->id.'-'.$admission->studentname.'-'.$admission->fromyear.'-'.$admission->toyear.'.jpg';
+            $destinationPath = public_path().'/studentimages/';
+            $file->move($destinationPath,$fileName);
+            $admission->studentimage=$fileName;
+         }
+
+            $admission->update();
 
         session()->flash('message','Admission record updated successfully!');
         $fromyear=Session::get('fromyear');
@@ -603,7 +631,7 @@ class AdmissionController extends Controller
         $admission1->otherschool=$admission->otherschool;
         $admission1->fatherno=$admission->fatherno;
         $admission1->motherno=$admission->motherno;
-        $admission1->whatsappon=$admission->whatsapptext;
+        $admission1->whatsappon=$admission->whatsappon;
         $admission1->landline=$admission->landline;
         $admission1->email=$admission->email;
         $admission1->standard=$request->standard;
@@ -622,6 +650,18 @@ class AdmissionController extends Controller
         $admission1->overallpercent=$admission->overallpercent;
         $admission1->fee_id=$fee_id;
         $admission1->save();
+
+
+        if($admission->studentimage!="")
+        {
+           $fileexists=$admission->studentimage;
+           $path=public_path().'/studentimages/'.$fileexists;
+           $fileName = $admission1->id.'-'.$admission1->studentname.'-'.$admission1->fromyear.'-'.$admission1->toyear.'.jpg';
+           $destinationPath = public_path().'/studentimages/'.$fileName;
+           File::copy($path,$destinationPath);
+           $admission1->studentimage=$fileName;
+        }
+           $admission1->update();
 
         $fromyear=Session::get('fromyear');
         $toyear=Session::get('toyear');

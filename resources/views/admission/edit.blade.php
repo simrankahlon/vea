@@ -17,7 +17,7 @@
 @endphp
 <input type="hidden"  value="{{$url}}" id="url"/>
 <div class="card">
-                            <form action="{{ url('/admission/'.$admission->id.'/edit') }}" method="post" name="addadmission" id="addadmission">
+                            <form action="{{ url('/admission/'.$admission->id.'/edit') }}" method="post" name="addadmission" id="addadmission" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                             <div class="card-header">
                                 <strong>Edit Admission</strong>
@@ -170,7 +170,11 @@
                                         </div>
 
                                     </div>
+                                    @if($admission->day2!="")
+                                    <div class="onemore">
+                                    @else
                                     <div class="onemore" style="display: none;">
+                                    @endif
                                     <div class="form-group row">
                                         <div class="col-md-4">
                                               <div class="form-group">
@@ -226,6 +230,11 @@
                                         <label for="overallpercent">Overall %</label>
                                         <input name ="overallpercent" type="text" class="form-control" id="overallpercent" placeholder="Overall %" value="{{ $admission->overallpercent }}" pattern="[0-9]+(\.[0-9]{0,2})?%?">
                                         <span style="color:red">{{ $errors->first('overallpercent') }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Student Image</label>
+                                        <input name ="student_image" type="file" class="form-control" id="student_image" placeholder="Select an image">
+                                       <span style="color:red">{{ $errors->first('student_image') }}{{Session::get('student_image')}}</span>
                                     </div>
                             </div>
                             <div class="card-footer">
@@ -340,14 +349,15 @@ $("#standard" ).change(function()
   });
 $("#admbatch" ).change(function() 
   {
-   
     var admbatch = $("#admbatch").val();
     var standard = $("#standard").val();
     var branch= $("#branch").val();
+    var fromyear = $("#from_year").val();
+    var toyear = $("#to_year").val();
 
     var url = $('#url').val();
 
-        $.get(url + '/ajax/admissionbatch/'+admbatch+'/'+standard+'/'+branch, function (data) {
+        $.get(url + '/ajax/admissionbatch/'+admbatch+'/'+standard+'/'+branch+'/'+fromyear+'/'+toyear, function (data) {
                     //success data
                     console.log(data);
                      $('#timings').val(data.timings);
@@ -357,6 +367,12 @@ $("#admbatch" ).change(function()
                             $('.onemore').show();
                             $('#timings1').val(data.timings1);
                             $('#days1').val(data.day2);
+                     }
+                     else
+                     {
+                            $('.onemore').hide();
+                            $('#timings1').val("");
+                            $('#days1').val("");
                      }
                    
                 })
