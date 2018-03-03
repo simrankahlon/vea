@@ -31,7 +31,7 @@
                     <button type="submit"  form="frmserch" class="btn btn-primary right" style="margin-left:-15px;height:35px;width:65px;">Go</button>  
                 </form>
             </div>
-        </div><!--END DIV ROW-->
+        </div><!---END DIV ROW-->
     </div><!--END CARD-BLOCK-->
 @php
     $url= url("/");                                               
