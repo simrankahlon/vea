@@ -33,9 +33,10 @@
                                     <div class="col-md-3">
                                     {{$admission->studentname}}
                                     </div>
-                                    
                                     <div class="col-md-4" style="float:left;">
+                                    @if($admission->studentimage!="")
                                     <img src="{{ asset('studentimages/'.$admission->studentimage) }}" class="img-thumbnail" height="80" width="180"/>
+                                    @endif
                                     </div>
                                     </div>
                                     <div class="form-group row">

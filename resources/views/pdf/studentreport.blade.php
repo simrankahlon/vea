@@ -17,10 +17,15 @@
         </td>
         </tr>
         <tr>
-        <td width="100%">
+        <td>
             <div class="h4 text-primary mb-0 mt-h">Student Name : <span class="text-muted">{{$admission->studentname}}</span></div>
         </td>
         <td>
+            @if($admission->studentimage!="")
+            <div class="col-md-4" style="float:left;">
+            <img src="{{ asset('studentimages/'.$admission->studentimage) }}" class="img-thumbnail" height="120" width="180"/>
+            </div>
+            @endif
         </td>
         <td>
         </td>
