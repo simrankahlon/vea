@@ -93,4 +93,19 @@ class HomeController extends Controller
 
 
     }
+
+    public function search(Request $request)
+    {
+        $this->validate($request,[
+            'searchtxt' => 'required',
+            ]);
+        $searchterm=$request->searchtxt;
+        $fromyear=Session::get('fromyear');
+        $toyear=Session::get('toyear');
+        $branch=Session::get('branch');
+        $admission=Admission::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('studentname','like',$searchterm.'%')
+        ->orderBy('studentname')->paginate(50);
+       
+        return view('admissionsearch',compact('admission'));
+    }
 }

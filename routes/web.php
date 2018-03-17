@@ -237,3 +237,7 @@ Route::get('remedial/{attendances}/{batch}/{standard}/addstudentattendance','Rem
 Route::post('remedial/{attendances}/{batch}/{standard}/addstudentattendance','RemedialController@storestudentattendance')->middleware('revalidate');
 
 Route::get('remedial/{attendances}/{batch}/{standard}/liststudentattendance','RemedialController@liststudentattendance')->middleware('revalidate');
+
+
+//home search
+Route::get('home/search','HomeController@search')->middleware('revalidate');

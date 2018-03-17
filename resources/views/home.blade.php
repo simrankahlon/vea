@@ -13,6 +13,25 @@ $branch=Session::get('branch');
 $fromyear=Session::get('fromyear');
 $toyear=Session::get('toyear');
 @endphp
+<div class="card">
+    <div class="card-block">
+        <div class="row">
+            <div class="col-xs-6">
+            </div>
+            <div class="col-xs-5">
+                @php
+                    $search = (isset($_GET['searchtxt'])) ? htmlentities($_GET['searchtxt']) : '';
+                @endphp
+                <form action="{{ url('/home/search') }}" method="get" id="frmserch">
+                    {{ csrf_field() }}
+                  
+                    <input name ="searchtxt" type="text" class="form-control left" id="searchtxt" placeholder="Search Admission" value="{{ $search }}" > <span style="color:red">{{ $errors->first('searchtxt') }}</span>
+            </div>
+                    <button type="submit"  form="frmserch" class="btn btn-primary right" style="margin-left:-15px;height:35px;width:65px;">Go</button>  
+                </form>
+            </div>
+        </div><!---END DIV ROW-->
+    </div><!--END CARD-BLOCK-->
 <input type="hidden"  value="{{$url}}" id="url"/>
 <div class="row">
     <div class="col-md-6">

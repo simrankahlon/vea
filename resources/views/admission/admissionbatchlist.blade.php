@@ -27,7 +27,7 @@
                     {{ csrf_field() }}
                   
                     <input name ="searchtxt" type="text" class="form-control left" id="searchtxt" placeholder="Search Admission" value="{{ $search }}" > <span style="color:red">{{ $errors->first('searchtxt') }}</span>
-                    </div>
+            </div>
                     <button type="submit"  form="frmserch" class="btn btn-primary right" style="margin-left:-15px;height:35px;width:65px;">Go</button>  
                 </form>
             </div>
@@ -45,6 +45,7 @@
                                                 <thead class="thead-default">
                                                 <tr>
                                                     <th class="text-xs-center">Date</th>
+                                                    <th class="text-xs-center">School</th>
                                                     <th class="text-xs-center">Name</th>
                                                     <th class="text-xs-center">Number</th>
                                                     <th class="text-xs-center">Activity</th>
@@ -58,6 +59,17 @@
                                                 <tr>
                                                     <td>
                                                         <div>{{ date('d-m-Y', strtotime($adm->date)) }}</div>
+                                                    </td>
+                                                    <td>
+                                                        @if($adm->school=='OTHERS')
+                                                            <div>{{$adm->otherschool}}</div>
+                                                        @else
+                                                        @foreach(App\Http\AcatUtilities\Schools::all() as $value => $code)
+                                                            @if($adm->school == $code)
+                                                                <div>{{$value}}</div>
+                                                            @endif
+                                                        @endforeach
+                                                        @endif
                                                     </td>
                                                     
                                                     <!-- <td>
