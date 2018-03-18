@@ -95,7 +95,7 @@
                                                 <tr>
                                                     <td colspan="7" align="right">
                                                         <nav>
-                                                            {{$admission->links()}}
+                                                            {{$admission->appends(Request::only('searchtxt'))->links()}}
                                                         </nav>
                                                     </td>
                                                 </tr>
