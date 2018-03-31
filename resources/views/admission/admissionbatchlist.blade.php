@@ -118,7 +118,7 @@
                                                         <strong>{{$adm->updated_at->diffForHumans()}}</strong>
                                                     </td>
                                                     <td>
-                                                   <div class="float-xs-right"> 
+                                                    <div class="float-xs-right"> 
                                                     <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/admission/'.$adm->id.'/edit') }}'">Edit</button>
                                                     <button type="button" class="btn btn-outline-danger btn-sm" onclick="javascript:confirmDelete('{{ url('/admission/'.$adm->id.'/delete') }}')" disabled="">Delete</button>
                                                     <a href="{{ url('/admission/'.$adm->id.'/report') }}" style="color:purple" target="_blank">REPORT</a>

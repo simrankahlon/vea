@@ -18,11 +18,12 @@
                                                     <th>Date</th>
                                                     <th>School</th>
                                                     <th>Standard</th>
-                                                    <th>Batch</th>
                                                     <th>Name</th>
                                                     <th>Number</th>
                                                     <th>Activity</th>
-                                                    
+                                                    <th>Action</th>
+                                                    <th>Fee Add</th>
+                                                    <th>Fee Details</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tasks-list">
@@ -42,11 +43,10 @@
                                                         @endforeach
                                                         @endif
                                                     </td>
-                                                    <td><div>{{$adm->standard}}</div></td>
-                                                    <td><div>{{$adm->admissionbatch}}</div></td>
-                                                    <!-- <td>
-                                                        <div>{{$adm->date}}</div>
-                                                    </td> -->
+                                                    <td>
+                                                        <div>{{$adm->standard}}</div>
+                                                        <div>{{$adm->admissionbatch}}</div>
+                                                    </td>
                                                     <td>
                                                         <div>
                                                             <a href="{{ url('/admission/'.$adm->id.'/list') }}">{{$adm->studentname }}</a>
@@ -89,11 +89,90 @@
                                                     <td>
                                                         <strong>{{$adm->updated_at->diffForHumans()}}</strong>
                                                     </td>
+                                                    <td>
+                                                    <div class="float-xs-right"> 
+                                                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/admission/'.$adm->id.'/edit') }}'">Edit</button>
+                                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="javascript:confirmDelete('{{ url('/admission/'.$adm->id.'/delete') }}')" disabled="">Delete</button>
+                                                    <a href="{{ url('/admission/'.$adm->id.'/report') }}" style="color:purple" target="_blank">REPORT</a>
+                                                    @if($adm->standard!='X')
+                                                    <a href="{{ url('/admission/'.$adm->id.'/transferadm') }}" style="color:green">TRANSFER</a>
+                                                    @endif
+                                                    @if($adm->remedial_list === 1)
+                                                    <a href="{{ url('/admission/'.$adm->id.'/remedialdetails') }}" style="color:maroon">REMEDIAL</a>
+                                                    @endif
+                                                    </div>
+                                                    </td>
+                                                    @php
+                                                    $first=1;
+                                                    $second=2;
+                                                    $third=3;
+                                                    $full=0;
+                                                    @endphp
+                                                    <td>
+                                                    <div class="float-xs-right">
+                                                    <select id="admission-{{$adm->id}}" name="admission-actions[]" class="form-control" onchange="javascript:confirmChange(this.value,{{$adm->id}})">
+                                                        <option value="pleaseselect">Please select</option>
+                                                        @if($adm->installment_date0!="")
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$first.'/fee') }}" disabled="">1st Installment</option>
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$second.'/fee') }}" disabled="">2nd Installment</option>
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$third.'/fee') }}" disabled="">3rd Installment</option>
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$full.'/fee') }}">Full Payment</option>
+                                                        @else
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$first.'/fee') }}">1st Installment</option>
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$second.'/fee') }}">2nd Installment</option>
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$third.'/fee') }}">3rd Installment</option>
+                                                        @if($adm->installment_date1!="" or $adm->installment_date2!="" or $adm->installment_date3!="")
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$full.'/fee') }}" disabled="">Full Payment</option>
+                                                        @else
+                                                        <option value="{{ url('/admission/'.$adm->id.'/'.$full.'/fee') }}">Full Payment</option>
+                                                        @endif
+                                                        @endif
+                                                    </select>
+                                                    </div>
+                                                    </td>
+                                                    <td>
+                                                        @if($adm->installment_date0!="")
+                                                        <div><strong>Full Payment :</strong>
+                                                        <a href="{{ url('/admission/'.$adm->id.'/0'.'/viewfeereceipt') }}">@if($adm->installment_date0!="")
+                                                        PAID
+                                                        @else
+                                                        PENDING
+                                                        @endif
+                                                        </a></div>
+                                                        @else
+                                                        <div><strong>1st Inst (On Admission) :</strong>@if($adm->installment_date1!="")
+                                                        <a href="{{ url('/admission/'.$adm->id.'/1'.'/viewfeereceipt') }}">
+                                                        PAID
+                                                        @else
+                                                        <a href="#">
+                                                        PENDING
+                                                        @endif
+                                                        </a></div>
+                                                        <div><strong>2nd Installment :</strong>
+                                                        @if($adm->installment_date2!="")
+                                                        <a href="{{ url('/admission/'.$adm->id.'/2'.'/viewfeereceipt') }}">
+                                                        PAID
+                                                        @else
+                                                        <a href="#">
+                                                        PENDING
+                                                        @endif
+                                                        </a></div>
+                                                        <div><strong>3rd Installment :</strong>
+                                                        @if($adm->installment_date3!="")
+                                                        <a href="{{ url('/admission/'.$adm->id.'/3'.'/viewfeereceipt') }}">
+                                                        PAID
+                                                        @else
+                                                        <a href="#">
+                                                        PENDING
+                                                        @endif
+                                                        </a></div>
+                                                        @endif
+                                                    </td>
                                                     
                                                 </tr>
                                             @endforeach
                                                 <tr>
-                                                    <td colspan="7" align="right">
+                                                    <td colspan="9" align="right">
                                                         <nav>
                                                             {{$admission->appends(Request::only('searchtxt'))->links()}}
                                                         </nav>
@@ -105,4 +184,15 @@
                 </div>
                 </div>
         </div>
+@endsection
+@section('javascriptfunctions')
+<script>
+function confirmChange(Url,id) {
+document.location = Url;
+  }
+
+$(document).ready(function($){
+  $('select').find('option[value=pleaseselect]').attr('selected','selected');
+});
+</script>
 @endsection
