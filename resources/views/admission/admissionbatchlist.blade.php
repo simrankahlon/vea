@@ -120,7 +120,7 @@
                                                     <td>
                                                     <div class="float-xs-right"> 
                                                     <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/admission/'.$adm->id.'/edit') }}'">Edit</button>
-                                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="javascript:confirmDelete('{{ url('/admission/'.$adm->id.'/delete') }}')" disabled="">Delete</button>
+                                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="javascript:confirmDelete('{{ url('/admission/'.$adm->id.'/delete') }}')">Delete</button>
                                                     <a href="{{ url('/admission/'.$adm->id.'/report') }}" style="color:purple" target="_blank">REPORT</a>
                                                     @if($adm->standard!='X')
                                                     <a href="{{ url('/admission/'.$adm->id.'/transferadm') }}" style="color:green">TRANSFER</a>
@@ -222,5 +222,12 @@ document.location = Url;
 $(document).ready(function($){
   $('select').find('option[value=pleaseselect]').attr('selected','selected');
 });
+
+function confirmDelete(delUrl) {
+  if (confirm("Are you sure you want to delete")) {
+   document.location = delUrl;
+  }
+}
+
 </script>
 @endsection
