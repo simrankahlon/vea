@@ -513,6 +513,7 @@ class AdmissionController extends Controller
         $pdf = PDF::loadView('pdf.receipt', compact('admission','installment','fee','batch'))
                   ->setOption('header-html',$header)
                   ->setOption('footer-html',$footer);
+
         //return view('pdf.receipt',compact('admission','installment','fee','batch'));
         return $pdf->download($admission->studentname.'.pdf');
     }
@@ -550,6 +551,25 @@ class AdmissionController extends Controller
                 ]);
 
                 });
+        
+        if($installment==1)
+        {
+            $admission->mail_receipt1=1;
+        }
+        else if($installment==2)
+        {
+            $admission->mail_receipt2=1;
+        }
+        else if($installment==3)
+        {
+            $admission->mail_receipt3=1;
+        }
+        else if($installment==0)
+        {
+            $admission->mail_receipt0=1;
+        }
+
+        $admission->update();
         File::delete($storage_path.'/receipts/'.$admission->studentname.'.pdf');
         session()->flash('message','Email send successfully!');
         return back();

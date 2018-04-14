@@ -135,6 +135,8 @@
                                                         <div><strong>Full Payment :</strong>
                                                         <a href="{{ url('/admission/'.$adm->id.'/0'.'/viewfeereceipt') }}">@if($adm->installment_date0!="")
                                                         PAID
+                                                        @if($adm->mail_receipt0==1) <span style="color:red"> *</span>
+                                                        @endif
                                                         @else
                                                         PENDING
                                                         @endif
@@ -143,6 +145,8 @@
                                                         <div><strong>1st Inst (On Admission) :</strong>@if($adm->installment_date1!="")
                                                         <a href="{{ url('/admission/'.$adm->id.'/1'.'/viewfeereceipt') }}">
                                                         PAID
+                                                        @if($adm->mail_receipt1==1) <span style="color:red"> *</span>
+                                                        @endif
                                                         @else
                                                         <a href="#">
                                                         PENDING
@@ -152,6 +156,8 @@
                                                         @if($adm->installment_date2!="")
                                                         <a href="{{ url('/admission/'.$adm->id.'/2'.'/viewfeereceipt') }}">
                                                         PAID
+                                                        @if($adm->mail_receipt2==1) <span style="color:red"> *</span>
+                                                        @endif
                                                         @else
                                                         <a href="#">
                                                         PENDING
@@ -161,6 +167,8 @@
                                                         @if($adm->installment_date3!="")
                                                         <a href="{{ url('/admission/'.$adm->id.'/3'.'/viewfeereceipt') }}">
                                                         PAID
+                                                        @if($adm->mail_receipt3==1) <span style="color:red"> *</span>
+                                                        @endif
                                                         @else
                                                         <a href="#">
                                                         PENDING
