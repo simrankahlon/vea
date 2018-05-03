@@ -295,15 +295,17 @@ class AdmissionController extends Controller
          $admission->english2=$request->english2;
          $admission->overallpercent=$request->overallpercent;
          $admission->fee_id=$fee_id;
-         if($admission->studentimage!="")
-         {
-            $fileexists=$admission->studentimage;
-            $path=public_path().'/studentimages/'.$fileexists;
-            File::delete($path);
-         }
+         
 
          if($request->file('student_image')!="")
          {
+            
+            if($admission->studentimage!="")
+            {
+               $fileexists=$admission->studentimage;
+               $path=public_path().'/studentimages/'.$fileexists;
+               File::delete($path);
+            }
             $file = $request->file('student_image');
             $fileName = $admission->id.'-'.$admission->studentname.'-'.$admission->fromyear.'-'.$admission->toyear.'.jpg';
             $destinationPath = public_path().'/studentimages/';
