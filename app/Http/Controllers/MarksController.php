@@ -296,6 +296,7 @@ class MarksController extends Controller
         }
         else if($filter == 'LTOH')
         {
+            $query = "CAST(admission_marks.marks_obtained AS DECIMAL(10,2)) ASC";
             $admission=Admission::where('admission.branch',$branch)
                               ->where('admission.fromyear',$fromyear)
                               ->where('admission.toyear',$toyear)
@@ -305,11 +306,12 @@ class MarksController extends Controller
                               ->join('marks','marks.id','=','admission_marks.mark_id')
                               ->where('marks.id',$marks->id)
                               ->select('admission.studentname','marks.date','marks.topic_name','admission_marks.marks_obtained','marks.total_marks','marks.passing_marks')
-                              ->orderBy('admission_marks.marks_obtained','ASC')
+                              ->orderByRaw($query)
                               ->get();
         }
         else if($filter == 'HTOL')
         {
+            $query = "CAST(admission_marks.marks_obtained AS DECIMAL(10,2)) DESC";
             $admission=Admission::where('admission.branch',$branch)
                               ->where('admission.fromyear',$fromyear)
                               ->where('admission.toyear',$toyear)
@@ -319,7 +321,7 @@ class MarksController extends Controller
                               ->join('marks','marks.id','=','admission_marks.mark_id')
                               ->where('marks.id',$marks->id)
                               ->select('admission.studentname','marks.date','marks.topic_name','admission_marks.marks_obtained','marks.total_marks','marks.passing_marks')
-                              ->orderBy('admission_marks.marks_obtained','DESC')
+                              ->orderByRaw($query)
                               ->get();
         }
         
