@@ -24,9 +24,9 @@ class SchoolMarksController extends Controller
         $fromyear=Session::get('fromyear');
         $toyear=Session::get('toyear');
         $branch=Session::get('branch');
-        $eight=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('branch','BHANDUP')->where('standard','=','VIII')->get();
-        $ninth=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('branch','BHANDUP')->where('standard','=','IX')->get();
-        $tenth=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('branch','BHANDUP')->where('standard','=','X')->get();
+        $eight=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','VIII')->get();
+        $ninth=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','IX')->get();
+        $tenth=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','X')->get();
         $branch='BHANDUP';
         return view('schoolmarks.batchlist',compact('eight','ninth','tenth','branch'));
     }
