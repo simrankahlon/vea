@@ -28,6 +28,7 @@
                         <thead>
                             <tr>
                                 <th>Batch Names</th>
+                                <th>Student Count</th>
                                 <th>Activity</th>
                             </tr>
                         </thead>
@@ -37,10 +38,14 @@
                             @endphp
                             @foreach ($eight as $eight)
                             <tr>
-                                <td> <a href="{{ url('/batch/'.$eight->id.'/'.$standard.'/admission') }}">{{$eight->batchname }}</a></td>
-                            <td>
-                                <strong>{{$eight->updated_at->diffForHumans()}}</strong>
-                            </td>
+                                <td> <a href="{{ url('/batch/'.$eight->id.'/'.$standard.'/admission') }}">{{$eight->batchname }}</a>
+                                </td>
+                                <td>
+                                    <strong>{{$eight->count}}</strong>
+                                </td>
+                                <td>
+                                    <strong>{{$eight->updated_at->diffForHumans()}}</strong>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -59,6 +64,7 @@
                         <thead>
                             <tr>
                                 <th>Batch Names</th>
+                                <th>Student Count</th>
                                 <th>Activity</th>
                             </tr>
                         </thead>
@@ -68,10 +74,14 @@
                             @endphp
                             @foreach ($ninth as $nine)
                             <tr>
-                                <td> <a href="{{ url('/batch/'.$nine->id.'/'.$standard1.'/admission') }}">{{$nine->batchname }}</a></td>
-                            <td>
-                                <strong>{{$nine->updated_at->diffForHumans()}}</strong>
-                            </td>
+                                <td> <a href="{{ url('/batch/'.$nine->id.'/'.$standard1.'/admission') }}">{{$nine->batchname }}</a>
+                                </td>
+                                <td>
+                                    <strong>{{$nine->count}}</strong>
+                                </td>
+                                <td>
+                                    <strong>{{$nine->updated_at->diffForHumans()}}</strong>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -90,6 +100,7 @@
                         <thead>
                             <tr>
                                 <th>Batch Names</th>
+                                <th>Student Count</th>
                                 <th>Activity</th>
                             </tr>
                         </thead>
@@ -100,9 +111,12 @@
                             @foreach ($tenth as $ten)
                             <tr>
                                 <td> <a href="{{ url('/batch/'.$ten->id.'/'.$standard2.'/admission') }}">{{$ten->batchname }}</a></td>
-                            <td>
-                                <strong>{{$ten->updated_at->diffForHumans()}}</strong>
-                            </td>
+                                <td>
+                                    <strong>{{$ten->count}}</strong>
+                                </td>
+                                <td>
+                                    <strong>{{$ten->updated_at->diffForHumans()}}</strong>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

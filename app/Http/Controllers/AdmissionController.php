@@ -34,10 +34,62 @@ class AdmissionController extends Controller
         $fromyear=Session::get('fromyear');
         $toyear=Session::get('toyear');
         $branch=Session::get('branch');
+
+
        
-        $eight=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','VIII')->get();
-        $ninth=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','IX')->get();
-        $tenth=Batch::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','X')->get();
+        $eight=Batch::where('fromyear',$fromyear)
+                    ->where('toyear',$toyear)
+                    ->where('branch',$branch)
+                    ->where('standard','=','VIII')
+                    ->get();
+
+        foreach($eight as $eig)
+        {
+            $count=Admission::where('fromyear',$fromyear)
+                    ->where('toyear',$toyear)
+                    ->where('branch',$branch)
+                    ->where('standard','=','VIII')
+                    ->where('admissionbatch',$eig->batchname)
+                    ->count();
+
+            $eig->setAttribute('count',$count);
+        }
+
+        $ninth=Batch::where('fromyear',$fromyear)
+                    ->where('toyear',$toyear)
+                    ->where('branch',$branch)
+                    ->where('standard','=','IX')
+                    ->get();
+
+        foreach($ninth as $nine)
+        {
+            $count=Admission::where('fromyear',$fromyear)
+                    ->where('toyear',$toyear)
+                    ->where('branch',$branch)
+                    ->where('standard','=','IX')
+                    ->where('admissionbatch',$nine->batchname)
+                    ->count();
+
+            $nine->setAttribute('count',$count);
+        }
+
+        $tenth=Batch::where('fromyear',$fromyear)
+                    ->where('toyear',$toyear)
+                    ->where('branch',$branch)
+                    ->where('standard','=','X')
+                    ->get();
+
+        foreach($tenth as $ten)
+        {
+            $count=Admission::where('fromyear',$fromyear)
+                    ->where('toyear',$toyear)
+                    ->where('branch',$branch)
+                    ->where('standard','=','X')
+                    ->where('admissionbatch',$ten->batchname)
+                    ->count();
+
+            $ten->setAttribute('count',$count);
+        }
 
         return view('admission.index',compact('eight','ninth','tenth'));
     }
