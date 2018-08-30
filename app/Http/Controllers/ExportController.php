@@ -166,6 +166,8 @@ class ExportController extends Controller
                             $number++;
                             $srno++;
                         }
+                    
+                    }
                     $value1=substr($adm->installment_date3,0,7);
                     if($value1==$mon)
                     {   
@@ -225,7 +227,7 @@ class ExportController extends Controller
                         }
                     }
                }
-           }
+            
             });
             ob_end_clean();
         })->download("xlsx");
