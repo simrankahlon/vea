@@ -159,7 +159,7 @@
                                                     <td>
                                                    <div class="float-xs-right"> 
                                                     <button type="button" class="btn btn-outline-primary btn-sm" onclick="window.location.href='{{ url('/enquiry/'.$enq->id.'/edit') }}'">Edit</button>
-                                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="javascript:confirmDelete('{{ url('/enquiry/'.$enq->id.'/delete') }}')" disabled="">Delete</button>
+                                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="javascript:confirmDelete('{{ url('/enquiry/'.$enq->id.'/delete') }}')">Delete</button>
                                                     <button type="button"  value="{{$enq->id}}" class="btn btn-outline-success btn-sm open-orientation">Orientation</button>
                                                     @if($enq->adm_id!=null)
                                                     <button type="button"  value="{{$enq->id}}" class="btn btn-outline-warning btn-sm" onclick="window.location.href='{{ url('/admission/'.$enq->id.'/add') }}'" disabled="">Admission</button>

@@ -26,7 +26,7 @@ class EnquiryController extends Controller
         $fromyear=Session::get('fromyear');
         $toyear=Session::get('toyear');
         $branch=Session::get('branch');
-        $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->orderBy('updated_at', 'desc')->paginate(50);
+        $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('adm_id',NULL)->orderBy('updated_at', 'desc')->paginate(50);
         return view('enquiry/index',compact('enquiry'));
     }
 
