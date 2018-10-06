@@ -571,7 +571,7 @@ class AdmissionController extends Controller
                   ->setOption('header-html',$header)
                   ->setOption('footer-html',$footer);
 
-        //return view('pdf.receipt',compact('admission','installment','fee','batch'));
+        //return view('pdf.receipt',compact('admission','installment','fee','batch'));;
         return $pdf->download($admission->studentname.'.pdf');
     }
 

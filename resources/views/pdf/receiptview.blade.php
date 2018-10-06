@@ -153,7 +153,7 @@ $val=0;
                                         @elseif($val==0){{ $fe["totalgst"] }}
                                         @endif
                                     </div>
-                                    <label class="col-md-2 form-control-label" for="hf-email">Total : </label>
+                                    <label class="col-md-2 form-control-label" for="hf-email">Total :</label>
                                     <div class="col-md-2">
                                         @if($val==1){{ $fe["1total"] }}
                                         @elseif($val==2){{ $fe["2total"] }}

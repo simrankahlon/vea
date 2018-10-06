@@ -27,7 +27,7 @@ $val=0;
             </td>
             <td></td>
             <td>
-                <div class="h4 text-primary mb-0 mt-h">Receipt Date : <span class="text-muted">{{ date('d-m-Y', strtotime($admission["installment_date".$installment])) }}</span></div>
+                <div class="h4 text-primary mb-0 mt-h">Receipt Date :  <span class="text-muted">{{ date('d-m-Y', strtotime($admission["installment_date".$installment])) }}</span></div>
             </td>
         </tr>
         <tr>

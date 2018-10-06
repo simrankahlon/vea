@@ -178,7 +178,7 @@ $val=0;
                                         @endif>
                                     </div>
                                     <div class="form-group">
-                                        <label for="transaction_bank">Bank</label> <span style="color:red"> *</span>
+                                        <label for="transaction_bank">Bank </label> <span style="color:red"> *</span>
                                         <input name ="transaction_bank" type="transaction_bank" class="form-control" id="transaction_bank" placeholder="Bank" value=@if($admission["bank_transactionid".$val]!=null)
                                         {{$admission["bank_transactionid".$val]}}
                                          @else
