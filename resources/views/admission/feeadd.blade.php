@@ -134,6 +134,14 @@ $val=0;
                                     </select>
                                     <span style="color:red">{{ $errors->first('paymentmode') }}</span>
                                     </div>
+                                    <div class="form-group">
+                                    <label for="gst_no">GST No.</label>
+                                    <input name ="gst_no" type="gst_no" class="form-control" id="gst_no" placeholder="GST No." value=@if($admission["gst_no".$val]!=null)
+                                        {{$admission["gst_no".$val]}}
+                                         @else
+                                        {{ old('gst_no') }}
+                                        @endif>
+                                    </div>
                                     <div class="cheque" style="display: none;" id="cheque">
                                     <div class="form-group">
                                         <label for="bank">Bank</label> <span style="color:red"> *</span>
@@ -178,7 +186,6 @@ $val=0;
                                         @endif>
                                     </div>
                                     </div>
-
                             </div>
                             <div class="card-footer">
                                 <button type="submit" id="save" class="btn btn-primary">Save changes</button>

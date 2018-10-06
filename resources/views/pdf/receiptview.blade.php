@@ -67,22 +67,26 @@ $val=0;
                                     <div class="form-group row">
                                     <label for="paymentmode" class="col-md-2 form-control-label">Installment :</label>
                                         @if($val==1)
-                                        <div class="col-md-10">
+                                        <div class="col-md-4">
                                             1st Installment (On Admission)
                                         </div>
                                         @elseif($val==2)
-                                        <div class="col-md-10">
+                                        <div class="col-md-4">
                                             2nd Installment
                                         </div>
                                         @elseif($val==3)
-                                        <div class="col-md-10">
+                                        <div class="col-md-4">
                                             3rd Installment
                                         </div>
                                         @elseif($val==0)
-                                        <div class="col-md-10">
+                                        <div class="col-md-4">
                                             Full Payment
                                         </div>
                                         @endif
+                                        <label for="paymentmode" class="col-md-2 form-control-label">GST No. :</label>
+                                        <div class="col-md-4">
+                                            {{$admission["gst_no".$installment]}}
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                     <label for="paymentmode" class="col-md-2 form-control-label">Payment Mode :</label>
@@ -123,6 +127,10 @@ $val=0;
                                     <label class="col-md-2 form-control-label" for="hf-email">Transaction Id : </label>
                                     <div class="col-md-4">
                                     {{$admission["transactionid".$installment]}}
+                                    </div>
+                                    <label class="col-md-2 form-control-label" for="hf-email">Bank : </label>
+                                    <div class="col-md-4">
+                                    {{$admission["bank_transactionid".$installment]}}
                                     </div>
                                     </div>
                                     @endif

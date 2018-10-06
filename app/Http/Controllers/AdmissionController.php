@@ -511,6 +511,7 @@ class AdmissionController extends Controller
             $admission["chequeno".$installment]="";
             $admission["transactionid".$installment]="";
             $admission["bank_transactionid".$installment]="";
+            $admission["gst_no".$installment]=$request->gst_no;
         }
         elseif($paymentmode=='CHEQUE')
         {
@@ -523,6 +524,7 @@ class AdmissionController extends Controller
             $admission["receipt_no".$installment]=$receipt_id;
             $admission["transactionid".$installment]="";
             $admission["bank_transactionid".$installment]="";
+            $admission["gst_no".$installment]=$request->gst_no;
         }
         elseif($paymentmode=='ONLINEPAYMENT')
         {
@@ -535,6 +537,7 @@ class AdmissionController extends Controller
             $admission["bank".$installment]="";
             $admission["branch".$installment]="";
             $admission["chequeno".$installment]="";
+            $admission["gst_no".$installment]=$request->gst_no;
         }
         $admission->update();
         

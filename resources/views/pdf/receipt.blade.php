@@ -91,6 +91,11 @@ $val=0;
                 </span></div>
             </td>
         </tr>
+        <tr>
+            <td>
+                <div class="h4 text-primary mb-0 mt-h ">GST No. : <span class="text-muted">{{$admission["gst_no".$installment]}}</span></div>
+            </td>
+        </tr>
         @if($paytype=='Cheque')
         <tr>
             <td>

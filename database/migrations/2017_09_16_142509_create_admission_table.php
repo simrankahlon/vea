@@ -87,6 +87,10 @@ class CreateAdmissionTable extends Migration
             $table->boolean('mail_receipt2')->nullable();
             $table->boolean('mail_receipt3')->nullable();
             $table->boolean('mail_receipt0')->nullable();
+            $table->string('gst_no1')->nullable();
+            $table->string('gst_no2')->nullable();
+            $table->string('gst_no3')->nullable();
+            $table->string('gst_no0')->nullable();
             $table->timestamps();
         });
     }
