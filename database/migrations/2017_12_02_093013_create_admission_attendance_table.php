@@ -20,6 +20,7 @@ class CreateAdmissionAttendanceTable extends Migration
             $table->integer('attendance_id')->unsigned()->index();
             $table->foreign('attendance_id')->references('id')->on('attendance')->onDelete('cascade');
             $table->string('attendance');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

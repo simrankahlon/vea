@@ -16,7 +16,7 @@
 @endphp
 <input type="hidden"  value="{{$url}}" id="url"/>
 <input type="hidden" value="{{$attendances->id}}" id="attendance_id"/>
-                        <div class="card">
+    <div class="card">
                             <form action="{{ url('/attendance/'.$attendances->id.'/'.$batch->id.'/'.$standard.'/addstudentattendance') }}" method="post" name="addstudentattendance" id="addstudentattendance">
                                 {{ csrf_field() }}
                             <div class="card-header">
@@ -29,7 +29,8 @@
                                                     <th class="text-xs-center">Student Name</th>
                                                     <th class="text-xs-center">Date of Attendance</th>
                                                     <th class="text-xs-center">Remark</th>
-                                                    </tr>
+                                                    <th class="text-xs-center">Comment</th>
+                                                </tr>
                                             </thead>
                                             <tbody id="tasks-list">
                                              @foreach ($admission as $adm)
@@ -42,7 +43,7 @@
                                                     </td>
                                                     <td class="text-xs-center">
                                                             <div class="form-group row">
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-2">
                                                                 <input name ="adm[]" size="1" type="hidden" class="form-control admission" id="adm[]"  placeholder="" value="{{$adm->id}}">
                                                                 </div>
                                                                         @php
@@ -51,7 +52,7 @@
                                                                         @endphp
                                                                         @foreach($adm->attendances as $ad)
                                                                             @if($ad->pivot->attendance_id==$attendances->id)
-                                                                                    <div class="col-md-6">
+                                                                                    <div class="col-md-8">
                                                                                     <select id="remark[]" name="remark[]" class="form-control" size="1" required="" oninvalid="this.setCustomValidity('Please enter Remark')" oninput="setCustomValidity('')">
                                                                                         <option value="0">Please select</option>
                                                                                         @foreach(App\Http\AcatUtilities\StudentAttendance::all() as $value => $code)
@@ -72,7 +73,7 @@
                                                                             @endphp
                                                                         @endforeach
                                                                         @if($found==0 && $displayed!=1)
-                                                                        <div class="col-md-6">
+                                                                        <div class="col-md-8">
                                                                             <select id="remark[]" name="remark[]" class="form-control" size="1" required="" oninvalid="this.setCustomValidity('Please enter Remark')" oninput="setCustomValidity('')">
                                                                                         <option value="0">Please select</option>
                                                                                         @foreach(App\Http\AcatUtilities\StudentAttendance::all() as $value => $code)
@@ -84,6 +85,23 @@
 
 
                                                             </div>
+                                                    </td>
+                                                    
+                                                    <td class="text-xs-center">
+                                                        @php
+                                                            $dislayed=0;
+                                                        @endphp
+                                                        @foreach($adm->attendances as $ad)
+                                                            @if($ad->pivot->attendance_id==$attendances->id)
+                                                                <input name ="comment[]" type="comment" class="form-control" id="comment[]" placeholder="Comment" value="{{$ad->pivot->comment}}">
+                                                                @php
+                                                                    $dislayed=1;
+                                                                @endphp
+                                                            @endif
+                                                        @endforeach
+                                                        @if($displayed == 0)
+                                                            <input name ="comment[]" type="comment" class="form-control" id="comment[]" placeholder="Comment" value="">
+                                                        @endif
                                                     </td>
                                                     
                                                 </tr>

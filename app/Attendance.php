@@ -26,6 +26,6 @@ class Attendance extends Authenticatable
 
     public function admissions()
     {
-        return $this->belongsToMany(Admission::class, 'admission_attendance')->withPivot('attendance')->withTimestamps();
+        return $this->belongsToMany(Admission::class, 'admission_attendance')->withPivot('attendance','comment')->withTimestamps();
     }
 }

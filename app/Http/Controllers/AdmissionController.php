@@ -599,7 +599,7 @@ class AdmissionController extends Controller
         {
         Mail::send('email.feereceipt', ['title' => "", 'content' => ""], function ($message) use ($admission,$installment,$storage_path)
                 {
-                    $message->from('veaenglishacademy@gmail.com', 'VEA Team')
+                    $message->from('veaenglishacademy@gmail.com', 'Vikram\'s English Academy Team')
                             ->to($admission->email)
                             ->subject('Installment Receipt')
                             ->attach($storage_path.'/receipts/'.$admission->studentname.'.pdf', [

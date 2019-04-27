@@ -166,6 +166,7 @@ class AttendanceController extends Controller
                     'admission_id' => $request->adm[$i], 
                     'attendance_id'=> $attendances->id,
                     'attendance'=>$att,
+                    'comment'=>$request->comment[$i],
                     'created_at'=> new \DateTime(),
                     'updated_at'=> new \DateTime()
                 ]);
@@ -174,7 +175,7 @@ class AttendanceController extends Controller
                 {
                     DB::table('admission_attendance')->where('admission_id',$request->adm[$i])
                      ->where('attendance_id',$attendances->id)
-                     ->update(['attendance' =>$att]);
+                     ->update(['attendance' =>$att,'comment'=>$request->comment[$i]]);
                 }
         }
         return redirect('/attendance/'.$batch->id.'/'.$standard.'/listattendance');

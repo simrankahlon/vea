@@ -19,6 +19,7 @@
                                                     <th>Student Name</th>
                                                     <th>Date of Attendance</th>
                                                     <th>Remark</th>
+                                                    <th>Comment</th>
                                                     </tr>
                                             </thead>
                                             <tbody id="tasks-list">
@@ -47,6 +48,27 @@
                                                                     @php
                                                                     $displayed=1;
                                                                     @endphp
+                                                            @endif
+                                                            @php
+                                                                $dislayed=0;
+                                                            @endphp
+                                                        @endforeach
+                                                        @if($found==0 && $displayed!=1)
+                                                             <div><strong> - </strong></div>
+                                                        @endif
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $found=0;
+                                                            $displayed=0;
+                                                        @endphp
+                                                        @foreach($adm->attendances as $ad)
+                                                            @if($ad->pivot->attendance_id==$attendances->id)
+                                                               <div><strong>{{$ad->pivot->comment}}</strong></div>
+                                                                @php
+                                                                    $displayed=1;
+                                                                @endphp
                                                             @endif
                                                             @php
                                                                 $dislayed=0;
