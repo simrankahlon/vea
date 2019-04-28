@@ -294,8 +294,6 @@ $('#btn-save').on('click',function(e){
 
         $('#myModal').modal('hide');
         var admission_id=$('#admission_id').val();
-        console.log(admission_id);
-
         
         $.ajaxSetup({
             headers: {

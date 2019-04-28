@@ -35,30 +35,36 @@ class EnquiryController extends Controller
         
         $this->validate($request,[
             'filters' => 'required',
+            'filters_school' => 'required',
             ]);
         $filter=$request->filters;
+        $filters_school = $request->filters_school;
         $fromyear=Session::get('fromyear');
         $toyear=Session::get('toyear');
         $branch=Session::get('branch');
         if($filter=='LATESTTOOLD')
         {
-            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->orderBy('date', 'desc')->paginate(50);
+            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('school',$filters_school)->orderBy('date', 'desc')->paginate(50);
         }
         elseif($filter=='ONLYVIII')
         {
-            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','VIII')->orderBy('updated_at', 'desc')->paginate(50);
+            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','VIII')->where('school',$filters_school)->orderBy('updated_at', 'desc')->paginate(50);
         }
         elseif($filter=='ONLYIX')
         {
-            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','IX')->orderBy('updated_at', 'desc')->paginate(50);
+            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','IX')->where('school',$filters_school)->orderBy('updated_at', 'desc')->paginate(50);
         }
         elseif($filter=='ONLYX')
         {
-            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','X')->orderBy('updated_at', 'desc')->paginate(50);
+            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','X')->where('school',$filters_school)->orderBy('updated_at', 'desc')->paginate(50);
         }
         elseif($filter=='ONLYIXANDX')
         {
-            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('standard','=','IX')->orWhere('standard','=','X')->orderBy('updated_at', 'desc')->paginate(50);
+            $enquiry=Enquiry::where('fromyear',$fromyear)->where('toyear',$toyear)->where('branch',$branch)->where('school',$filters_school)->where('date1','<>',NULL)->where(function ($query) {
+                $query->where('standard','=','X')
+                      ->orWhere('standard','=','IX');
+            })
+            ->orderBy('updated_at', 'desc')->paginate(50);
         }
         return view('enquiry/index',compact('enquiry'));
     }

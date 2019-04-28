@@ -22,24 +22,35 @@
 <div class="card">
     <div class="card-block">
         <div class="row">
-            <div class="col-xs-5">
-            </div>
-            <div class="col-xs-6"> 
-                @php
-                $search = (isset($_GET['filters'])) ? htmlentities($_GET['filters']) : '';
-                @endphp
-                <form action="{{ url('/orientation/filters') }}" method="get" id="enquiry_filter">
+            <form action="{{ url('/orientation/filters') }}" method="get" id="enquiry_filter">
                     {{ csrf_field() }}
-                    <!--  <div class="form-control"> -->
-
-                    <select id="filters" name="filters" class="form-control" size="1">
+            <div class="col-xs-5">
+                @php
+                    $search = (isset($_GET['filters'])) ? htmlentities($_GET['filters']) : '';
+                @endphp
+                <select id="filters" name="filters" class="form-control" size="1">
                         <option value="">Please select</option>
                         @foreach(App\Http\AcatUtilities\Filters::all() as $value => $code)
                             <option value="{{$code}}" @if ($search == $code) selected="selected" @endif>{{$value}}</option>
                         @endforeach
                     </select>
                     <span style="color:red">{{ $errors->first('filters') }}</span>
-                    </div>
+            </div>
+            <div class="col-xs-6"> 
+                @php
+                    $search_schools = (isset($_GET['filters_school'])) ? htmlentities($_GET['filters_school']) : '';
+                @endphp
+                
+                    <!--  <div class="form-control"> -->
+
+                    <select id="filters_school" name="filters_school" class="form-control" size="1">
+                        <option value="">Please select</option>
+                        @foreach(App\Http\AcatUtilities\Schools::all() as $value => $code)
+                            <option value="{{$code}}" @if ($search_schools == $code) selected="selected" @endif>{{$value}}</option>
+                        @endforeach
+                    </select>
+                    <span style="color:red">{{ $errors->first('filters_school') }}</span>
+            </div>
                     <button type="submit"  form="enquiry_filter" class="btn btn-primary right"  style="margin-left:-15px;height:39px">Filter</button> 
                 </form>
                 <br><br>
