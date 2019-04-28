@@ -851,4 +851,18 @@ class AdmissionController extends Controller
         
     }
 
+
+    public function viewcomment(Admission $admission)
+    {
+        return \Response::json($admission);
+    }
+
+    public function addcomment(Request $request,Admission $admission)
+    {
+        
+        $admission->comment = $request->comment;
+        $admission->update();
+
+        return \Response::json($admission);
+    }
 }

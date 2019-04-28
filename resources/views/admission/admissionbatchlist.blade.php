@@ -128,6 +128,7 @@
                                                     @if($adm->remedial_list === 1)
                                                     <a href="{{ url('/admission/'.$adm->id.'/remedialdetails') }}" style="color:maroon">REMEDIAL</a>
                                                     @endif
+                                                    <button type="button"  value="{{$adm->id}}" class="btn btn-outline-success btn-sm open-comment">Comment</button>
                                                     </div>
                                                     </td>
                                                     @php
@@ -221,6 +222,40 @@
                 </div>
         </div>
 @endsection
+@section('modalfun')
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add/Edit Comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="form-group">
+            <label for="name">Student Name:</label>
+            <input name ="name" type="text" class="form-control" id="name"  placeholder="Name" value="" disabled>
+            </div>
+            
+          <div class="form-group">
+            <label for="comment">Comment :</label>
+            <input name ="comment" type="text" class="form-control" id="comment"  placeholder="Comment" value="">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save Changes</button>&nbsp;
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="hidden" id="admission_id" name="admission_id" value="">
+      </div>
+    </div>
+  </div>
+</div>
+<meta name="_token" content="{!! csrf_token() !!}" />
+@endsection
+
 @section('javascriptfunctions')
 <script>
 function confirmChange(Url,id) {
@@ -229,13 +264,73 @@ document.location = Url;
 
 $(document).ready(function($){
   $('select').find('option[value=pleaseselect]').attr('selected','selected');
+
+    var url = $('#url').val();
+
+            $('#tasks-list').on('click','.open-comment',function()
+            {
+                var admission_id = $(this).val();
+
+                $.get(url + '/ajax/admission/comment/'+admission_id, function (data) {
+
+                    $('#admission_id').val(admission_id);
+                    $('#name').val(data.studentname);
+                    $('#comment').val(data.comment);
+                    $('#myModal').modal('show');
+
+                });
+            });
+
 });
+
 
 function confirmDelete(delUrl) {
   if (confirm("Are you sure you want to delete")) {
    document.location = delUrl;
   }
 }
+
+$('#btn-save').on('click',function(e){ 
+
+        $('#myModal').modal('hide');
+        var admission_id=$('#admission_id').val();
+        console.log(admission_id);
+
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        })
+
+        e.preventDefault(); 
+        var formData = {
+            comment: $('#comment').val()
+        }
+        var url = $('#url').val();
+        
+        var type = "POST";
+        
+
+        $.ajax({
+            type: type,
+            url: url + '/ajax/admission/comment/'+admission_id,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+            },
+            statusCode: 
+                    {
+                        401: function()
+                        { 
+                            window.location.href =url+'/login';
+                        }
+                    },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
 
 </script>
 @endsection

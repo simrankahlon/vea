@@ -91,6 +91,7 @@ class CreateAdmissionTable extends Migration
             $table->string('gst_no2')->nullable();
             $table->string('gst_no3')->nullable();
             $table->string('gst_no0')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

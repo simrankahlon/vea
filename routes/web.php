@@ -52,6 +52,9 @@ Route::get('ajax/admission/{standard}/{branch}/{fromyear}/{toyear}','AdmissionCo
 Route::get('ajax/admissionbatch/{batch}/{standard}/{branch}/{fromyear}/{toyear}','AdmissionController@batch')->middleware('revalidate'); 
 Route::get('ajax/feecheck/{standard}/{fromyear}/{toyear}','AdmissionController@feecheck')->middleware('revalidate'); 
 Route::get('ajax/admissionremedial/{standard}/{branch}/{fromyear}/{toyear}','AdmissionController@remedialbatch')->middleware('revalidate'); 
+Route::get('ajax/admission/comment/{admission}','AdmissionController@viewcomment')->middleware('revalidate'); 
+Route::post('ajax/admission/comment/{admission}','AdmissionController@addcomment')->middleware('revalidate'); 
+
 
 //ORIENTATION LIST
 Route::get('orientation/list','OrientationController@index')->middleware('revalidate');
