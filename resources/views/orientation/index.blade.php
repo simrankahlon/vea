@@ -44,7 +44,7 @@
                     <!--  <div class="form-control"> -->
 
                     <select id="filters_school" name="filters_school" class="form-control" size="1">
-                        <option value="">Please select</option>
+                        <option value="">Please select school</option>
                         @foreach(App\Http\AcatUtilities\Schools::all() as $value => $code)
                             <option value="{{$code}}" @if ($search_schools == $code) selected="selected" @endif>{{$value}}</option>
                         @endforeach
